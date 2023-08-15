@@ -5,16 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Damage
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PP
+  - PostProcessing
   - Water
   - UI
   - Ground
   - Wall
-  - 
+  - Player
   - 
   - 
   - 

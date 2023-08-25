@@ -27,11 +27,11 @@ public class ShootingAtPlayer : MonoBehaviour
     {
         if(bullet != null){
             if(fireSound != null)
-                AudioManager.instance.PlayClip(fireSound);
+                AudioManager.instance.PlaySFXClip(fireSound);
             Instantiate(bullet, transform.position, transform.rotation);
             yield return new WaitForSeconds(.5f);
             if(reloadSound != null)
-                AudioManager.instance.PlayClip(reloadSound);
+                AudioManager.instance.PlaySFXClip(reloadSound);
             StartCoroutine(gameObject.GetComponent<CameraControls>().ResetPosition());
         }
     }

@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     
     [SerializeField] int health = 10;
     public GameObject projectile;
+    public AudioClip fireSFX;
 
     //Patroling
     public Vector3 walkPoint;
@@ -90,8 +91,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Shoot(){
         Rigidbody rb = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
-        //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+        if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
     }
     public void TakeDamage(int damage){
         health -= damage;

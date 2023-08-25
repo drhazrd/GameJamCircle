@@ -73,6 +73,6 @@ public class CharacterAnimation : MonoBehaviour
     }
     
     public void FootStep(){
-        AudioManager.instance.PlayClip(footstepClip);
+        AudioManager.instance.PlaySFXClip(footstepClip);
     }
 }

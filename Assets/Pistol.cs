@@ -6,6 +6,7 @@ public class Pistol : Gun
 {
     Animator anim;
     private float nextTimeToFire = 0f;
+    [SerializeField] AudioClip fireSFX, reloadSFX, emptysfx;
 
     void Start(){
         anim = GetComponent<Animator>();
@@ -18,6 +19,7 @@ public class Pistol : Gun
     }
     void Shoot(){
         Instantiate(bullet, firePoint.position, firePoint.rotation);
+        if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         anim.SetTrigger("Fire");
     }
 }

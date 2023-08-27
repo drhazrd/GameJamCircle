@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
+    public AudioMixer aMixer;
     public AudioClip gameMusic;
 
     public AudioSource sourceSFX;
@@ -22,39 +23,22 @@ public class AudioManager : MonoBehaviour
         }
         if(gameMusic != null) PlayBGM(gameMusic);
     }
-    internal void StartLevelBGM()
-    {
-        currentBGM = levelBGM;
-        if (currentBGM != null)
-        {
 
-            sourceBGM.Stop();
-            sourceBGM.clip = levelBGM;
-            sourceBGM.Play();
-        }
-    }
-
-    void OnEnable() {
-        GameManager.ongameStart += StartLevelBGM;
-    }
-    void OnDisable() {
-        GameManager.ongameStart -= StartLevelBGM;        
-    }
 
     public void PlayBGM(AudioClip clip)
     {
-        BGM.clip = clip;
+        sourceBGM.clip = clip;
     }
     public void PlaySFXClip(AudioClip clip)
     {
         SoundRandomizer();
-        SFX.PlayOneShot(clip);
+        sourceSFX.PlayOneShot(clip);
     }
 
     private void SoundRandomizer()
     {
-        SFX.pitch = UnityEngine.Random.Range(1f, 1.25f);
-        SFX.volume = UnityEngine.Random.Range(.95f, 1f);
+        sourceSFX.pitch = UnityEngine.Random.Range(1f, 1.25f);
+        sourceSFX.volume = UnityEngine.Random.Range(.95f, 1f);
     }
 
     public void ChangeBGM(AudioClip clip)
@@ -71,11 +55,6 @@ public class AudioManager : MonoBehaviour
         sourceBGM.volume = Mathf.MoveTowards(1, 0, .25f * Time.deltaTime);
         sourceBGM.Play();
         yield return null;
-    }
-    private void SoundRandomizer()
-    {
-        sourceSFX.pitch = UnityEngine.Random.Range(.75f, 1.25f);
-        sourceSFX.volume = UnityEngine.Random.Range(.85f, 1f);
     }
     //Audio Mixer Controls
     public void SetMasterVolume(float volumeLevel)

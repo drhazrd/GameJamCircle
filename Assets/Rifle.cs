@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : Gun
+public class Rifle : Gun
 {
     Animator anim;
     private float nextTimeToFire = 0f;
     [SerializeField] AudioClip fireSFX, reloadSFX, emptysfx;
-
-    void Start(){
+    void Start()
+    {
         isReloading = false;
         currentAmmo = maxAmmo;
         anim = GetComponent<Animator>();
@@ -16,6 +16,7 @@ public class Pistol : Gun
     void OnEnable(){
         isReloading = false;
     }
+
     void Update(){
         if (isReloading) return;
         if (currentAmmo <= 0){
@@ -31,14 +32,15 @@ public class Pistol : Gun
         isReloading = true;
         yield return new WaitForSeconds(reloadTime - .25f);
         if(reloadSFX != null) AudioManager.instance.PlaySFXClip(reloadSFX);
-        currentAmmo = maxAmmo;
         yield return new WaitForSeconds(.25f);
+        currentAmmo = maxAmmo;
         isReloading = false;
     }
+
     void Shoot(){
         currentAmmo--;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        CameraEffects.camEffects.Shake(.05f);
+        CameraEffects.camEffects.Shake(.15f);
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
     }

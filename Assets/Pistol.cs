@@ -38,8 +38,8 @@ public class Pistol : Gun
     void Shoot(){
         currentAmmo--;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        CameraEffects.camEffects.Shake(.05f);
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
+        CameraEffects.camEffects.Shake(.05f);
     }
 }

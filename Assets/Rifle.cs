@@ -40,7 +40,7 @@ public class Rifle : Gun
     void Shoot(){
         currentAmmo--;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        CameraEffects.camEffects.Shake(.15f);
+        CameraEffects.camEffects.Shake(.05f);
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
     }

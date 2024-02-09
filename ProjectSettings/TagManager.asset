@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Damage
   - Enemy
+  - Cannon
+  - Item
+  - Room
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -17,8 +21,8 @@ TagManager:
   - Wall
   - Player
   - Echoproof
-  - 
-  - 
+  - SpawnPoint
+  - Room
   - 
   - 
   - 

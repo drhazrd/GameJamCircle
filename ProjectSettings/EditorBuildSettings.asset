@@ -6,24 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Tom Stuff/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 4cb94c718a27ff545bdbdd28baf6f476
   - enabled: 1
-    path: Assets/Game.unity
+    path: Assets/Scenes/SniperGameLoop.unity
     guid: 37e17a6c56e02a342ac5f1caa6e8e60b
   - enabled: 1
-    path: Assets/Tom Stuff/Level2.unity
+    path: Assets/Scenes/Level2.unity
     guid: 05228d3cc25ac464188d909b5c3c37bd
   - enabled: 1
-    path: Assets/Level 2.unity
+    path: Assets/_Sets/3D Platformer/Level 2.unity
     guid: 547fdaca81ab5b548bac8842d50b4f5f
   - enabled: 1
-    path: Assets/Level 3.unity
+    path: Assets/_Sets/3D Platformer/Level 3.unity
     guid: c23bb483b794f9548b5c138d8ac66837
   - enabled: 1
-    path: Assets/Level 4.unity
+    path: Assets/_Sets/3D Platformer/Level 4.unity
     guid: 21a174097f4bc4440b7cd967216f248c
   - enabled: 1
-    path: Assets/Credits.unity
+    path: Assets/Scenes/Credits.unity
     guid: 57f00b912715ba44a8607a71c8213a34
   m_configObjects: {}

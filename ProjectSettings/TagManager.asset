@@ -21,8 +21,13 @@ TagManager:
   - Wall
   - Player
   - Echoproof
+<<<<<<< Updated upstream
   - SpawnPoint
   - Room
+=======
+  - Accents
+  - VFX
+>>>>>>> Stashed changes
   - 
   - 
   - 

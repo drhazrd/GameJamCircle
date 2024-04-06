@@ -674,6 +674,44 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2266874174765083300, guid: 1d845d632a914204288380157cad845e, type: 3}
   m_PrefabInstance: {fileID: 698714162}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &698714164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2266874175621578565, guid: 1d845d632a914204288380157cad845e, type: 3}
+  m_PrefabInstance: {fileID: 698714162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &698714165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698714164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &718571978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,12 +1580,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aMixer: {fileID: 24100000, guid: 1f9741bc29953fb4abba32c51e4d105a, type: 2}
-  currentBGM: {fileID: 0}
-  sourceBGM: {fileID: 855498695}
+  gameMusic: {fileID: 0}
   sourceSFX: {fileID: 2018418640}
-  volumeMaster: 0
-  volumeBGM: 0
-  volumeSFX: 0
+  sourceBGM: {fileID: 855498695}
 --- !u!114 &981902684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,11 +1596,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  gameplayCanvas: {fileID: 340826779}
-  loseCanvas: {fileID: 440715968}
-  pauseCanvas: {fileID: 773272710}
-  winCanvas: {fileID: 1033793407}
-  optionsCanvas: {fileID: 929817787}
 --- !u!4 &981902685
 Transform:
   m_ObjectHideFlags: 0

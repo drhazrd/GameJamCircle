@@ -89,7 +89,7 @@ Material:
     - _Mode: 0
     - _NoiseScale: 10
     - _Noise_Scale: 12.98
-    - _Noise_Strength: -0.66
+    - _Noise_Strength: 1.69
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -104,7 +104,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 25.00061, g: 1024, b: 0, a: 1}
-    - _MainColor: {r: 0, g: 1, b: 0.14357352, a: 0}
+    - _MainColor: {r: 0, g: 1, b: 0.14357352, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1062155048546385234
 MonoBehaviour:

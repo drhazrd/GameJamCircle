@@ -20,16 +20,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lava
+  m_Name: LavaFlow
   m_Shader: {fileID: -6465566751694194690, guid: a7abe4a7d3d520d4aa5b9f11f2c72f98, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 3001
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -47,16 +50,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CurrentSpeed: 0.46
-    - _NoiseSpeed: 2.54
-    - _QueueControl: 0
+    - _AlphaClip: 0
+    - _Blend: 0
+    - _CastShadows: 1
+    - _Cull: 2
+    - _CurrentSpeed: -0.46
+    - _DstBlend: 10
+    - _NoiseSpeed: 0
+    - _QueueControl: 1
     - _QueueOffset: 0
-    - _RippleDensity: 1.47
-    - _RippleSlimness: 3.8
+    - _RippleDensity: 3.22
+    - _RippleSlimness: 0.79
     - _RippleSpeed: 0.08
-    - _WaveStrength: 6
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _WaveStrength: 255
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.63529414, g: 0.23879789, b: 0, a: 1}
-    - _CurrentDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _RippleColor: {r: 27.406893, g: 11.435834, b: 0, a: 1}
+    - _BaseColor: {r: 0.028301895, g: 0.008581377, b: 0, a: 1}
+    - _CurrentDirection: {r: 0.64, g: 1, b: 0, a: 0}
+    - _RippleColor: {r: 2.0470793, g: 0.7724828, b: 0, a: 1}
   m_BuildTextureStacks: []

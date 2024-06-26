@@ -12,13 +12,14 @@ public class Movement : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private Vector2 mouseLook;
+    [Header("Numbers")]
     public bool IsGrounded;
     public float playerSpeed = 2.0f;
     public float jumpHeight = 1.0f;
     public float gravityValue = -9.81f;
     public float mouseSens = 100f;
     public float xRotation = 0f;
-    public float FOV = 60f;
+    public float FOV = 60f; 
 
     private void OnEnable()
     {

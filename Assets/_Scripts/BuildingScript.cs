@@ -12,15 +12,17 @@ public class BuildingScript : MonoBehaviour
         r = UnityEngine.Random.Range(0f, 255f);
         b = UnityEngine.Random.Range(0f, 255f);
         g = UnityEngine.Random.Range(0f, 255f);
-        m_color = new Color(r,b,g);
-        m_renderer = GetComponent<Renderer>();
-        m_renderer.material.color = m_color;
-        if(m_color.a > 1f)m_color.a = 1f;
+        a = 1;
+        UpdateColor();
     }
 
     // Update is called once per frame
-    void Update()
+    void UpdateColor()
     {
+        m_color = new Color(r,b,g);
+        m_color.a = 1f;
+        m_renderer = GetComponent<Renderer>();
+        m_renderer.material.color = m_color;
         
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -22,17 +22,20 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LavaFlow
   m_Shader: {fileID: -6465566751694194690, guid: a7abe4a7d3d520d4aa5b9f11f2c72f98, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
   - DepthOnly
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,25 +54,32 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _Blend: 0
+    - _BlendModePreserveSpecular: 0
     - _CastShadows: 1
     - _Cull: 2
     - _CurrentSpeed: -0.46
     - _DstBlend: 10
+    - _FoamOffset: 0
     - _NoiseSpeed: 0
     - _QueueControl: 1
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _RippleDensity: 3.22
     - _RippleSlimness: 0.79
     - _RippleSpeed: 0.08
     - _SrcBlend: 5
     - _Surface: 1
+    - _Transparency: 1
     - _WaveStrength: 255
+    - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.028301895, g: 0.008581377, b: 0, a: 1}
     - _CurrentDirection: {r: 0.64, g: 1, b: 0, a: 0}
+    - _FoamColor: {r: 0, g: 1, b: 1, a: 0}
     - _RippleColor: {r: 2.0470793, g: 0.7724828, b: 0, a: 1}
   m_BuildTextureStacks: []

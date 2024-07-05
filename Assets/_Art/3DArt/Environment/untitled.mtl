@@ -1,0 +1,662 @@
+# Blender 3.3.0 MTL File: 'None'
+# www.blender.org
+
+newmtl BigTreeLeafA
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/BigTreeLeafA_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/BigTreeLeafA_Alb.png
+
+newmtl BigTreeShaftA
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/BigTree_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/BigTree_Alb.png
+
+newmtl BigTreeShaftB
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Wood_B_128.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Wood_B_128.png
+
+newmtl ClothFlag
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ClothFlag_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ClothFlag_Alb.png
+
+newmtl CmnPole1
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CmnPole1_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CmnPole1_Alb.png
+
+newmtl CmnStartGrid2
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CmnStartGrid1_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CmnStartGrid1_Alb.png
+
+newmtl Cushion
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Cushion_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Cushion_Alb.png
+
+newmtl Cusion2
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Cushion2_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Cushion2_Alb.png
+
+newmtl DartGreenDeep
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenDeep_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenDeep_Alb.png
+
+newmtl DartGreenDeep.002
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenDeep_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenDeep_Alb.png
+
+newmtl DartGreenLight
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenLight_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenLight_Alb.png
+
+newmtl DartGreenLight.003
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenLight_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartGreenLight_Alb.png
+
+newmtl DartGreenTunagi
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Dart_siba_Tunagi_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Dart_siba_Tunagi_Alb.png
+
+newmtl DartSand
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartSand_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/DartSand_Alb.png
+
+newmtl EnkeiOutLine
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ForestOutline_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ForestOutline_Alb.png
+
+newmtl FakeLeaf
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/FakeLeaf_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/FakeLeaf_Alb.png
+
+newmtl FlagRope_1
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/FlagRope1_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/FlagRope1_Alb.png
+
+newmtl ForestEnkei
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ForestEnkei_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ForestEnkei_Alb.png
+
+newmtl Gagb_Yama
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_yama01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_yama01_Alb.png
+
+newmtl Gagb_mc_blockface_brickandempty
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_mc_blockface_brickempty_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_mc_blockface_brickempty_Alb.png
+
+newmtl Gagb_mc_pole
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_mc_pole_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_mc_pole_Alb.png
+
+newmtl Gagb_mc_saku_white_long
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/saku_white_long_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/saku_white_long_Alb.png
+
+newmtl Gagb_mc_wood_block
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mc_block_graine_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mc_block_graine_Alb.png
+
+newmtl Gagb_mc_wood_men
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mokume_men_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mokume_men_Alb.png
+
+newmtl Gagb_mc_wood_sen_tozi
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mokume_03_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mokume_03_Alb.png
+
+newmtl Gagb_rock
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_rock01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Gagb_rock01_Alb.png
+
+newmtl Kanban01
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Kanban01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Kanban01_Alb.png
+
+newmtl Lamp
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Lamp_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Lamp_Alb.png
+
+newmtl MokumeFlat_R
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeFlat_R_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeFlat_R_Alb.png
+
+newmtl MokumeFlat_W
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeFlat_W_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeFlat_W_Alb.png
+
+newmtl MokumeFlat_Y
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeFlat_Y_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeFlat_Y_Alb.png
+
+newmtl MokumeMiharidai
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeMiharidai_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/MokumeMiharidai_Alb.png
+
+newmtl PanelFlame
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/PanelFlame_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/PanelFlame_Alb.png
+
+newmtl PlaneTree1
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/PlaneTree_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/PlaneTree_Alb.png
+
+newmtl PlantA_m
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/PlantA_01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/PlantA_01_Alb.png
+
+newmtl RoadBase
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/RoadBase_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/RoadBase_Alb.png
+
+newmtl RoadZebra
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/RoadZebra_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/RoadZebra_Alb.png
+
+newmtl SakuMetal
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/SakuMetal_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/SakuMetal_Alb.png
+
+newmtl Seiteki
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Seitekinomi_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Seitekinomi_Alb.png
+
+newmtl Seiteki.001
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Seitekinomi_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Seitekinomi_Alb.png
+
+newmtl SpeakerSet
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Speaker_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Speaker_Alb.png
+
+newmtl StartLine
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/GagbMcStartGrid_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/GagbMcStartGrid_Alb.png
+
+newmtl TireBase
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/TireBase_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/TireBase_Alb.png
+
+newmtl TireBases
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/TireBaseRingBolt_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/TireBaseRingBolt_Alb.png
+
+newmtl TireBlack
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_B_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_B_Alb.png
+
+newmtl TireGreen
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_G_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_G_Alb.png
+
+newmtl TireRed
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_R_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_R_Alb.png
+
+newmtl TireWhite
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_W_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Tire_W_Alb.png
+
+newmtl UltraArmDodai
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/UltraArmDodai_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/UltraArmDodai_Alb.png
+
+newmtl UltraArmLane
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/UltraArmLane_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/UltraArmLane_Alb.png
+
+newmtl ct_NSA_flower01
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ct_ry_flowers01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ct_ry_flowers01_Alb.png
+
+newmtl di_TreeA_Leaf
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_Tree_Leaf_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_Tree_Leaf_Alb.png
+
+newmtl di_TreeB_Base
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_TreeLeaf_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_TreeLeaf_Alb.png
+
+newmtl di_TreeB_Leaf
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_Tree_LeafB1_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_Tree_LeafB1_Alb.png
+
+newmtl di_TreeY_Leaf
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_Tree_LeafY1_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/di_Tree_LeafY1_Alb.png
+
+newmtl dp3_ColorBlock
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/sfcdp3_ColorBlock_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/sfcdp3_ColorBlock_Alb.png
+
+newmtl drum
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Drum_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/Drum_Alb.png
+
+newmtl ef_dashboard
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ef_dashboard02_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ef_dashboard02_Alb.png
+
+newmtl ef_dashboard03
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ef_dashboard03_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ef_dashboard03_Alb.png
+
+newmtl ef_glideboard
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ef_glideboard02_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/ef_glideboard02_Alb.png
+
+newmtl m_CrashBox
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CrashBox_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CrashBox_Alb.png
+
+newmtl m_CurbStone
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CurbStone_01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/CurbStone_01_Alb.png
+
+newmtl mc_kusa
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/kusa_01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/kusa_01_Alb.png
+
+newmtl mc_wood
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/kinopiohousedoor_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/kinopiohousedoor_Alb.png
+
+newmtl mokume
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mokume_01_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/mokume_01_Alb.png
+
+newmtl saku_white1
+Ns 96.078453
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/saku_white_short_Alb.png
+map_d C:/Users/Nick/Documents/3D Assets/Wii U - Mario Kart 8 - GBA Mario Circuit/saku_white_short_Alb.png

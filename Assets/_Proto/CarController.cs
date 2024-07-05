@@ -59,7 +59,7 @@ public class CarController : MonoBehaviour
         speedInput = context.ReadValue<float>() * reverseAccel;
     }
     void GetTurn(InputAction.CallbackContext context){
-        turnInput = context.ReadValue<float>() * turnStrength;
+        turnInput = context.ReadValue<float>() * turnStrength * .1f;
     }
     
     void Update()

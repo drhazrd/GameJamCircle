@@ -13,10 +13,14 @@ public class JourneyMovement : MonoBehaviour
     private Vector2 moveInput;
     private float turnSmoothVelocity;
     private float verticalVelocity;
+    private Animator _anim;
+    public bool isMoving {get; private set;}
+    private bool isJumping;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        _anim = GetComponentInChildren<Animator>();
         cam = Camera.main.transform;
     }
 
@@ -27,7 +31,9 @@ public class JourneyMovement : MonoBehaviour
 
     private void Update()
     {
+        AnimateCharacter();
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+        isMoving = direction == new Vector3(0,0) ? false:true;
         if (controller.isGrounded)
         {
             verticalVelocity = 0; // Reset vertical velocity when grounded
@@ -47,5 +53,11 @@ public class JourneyMovement : MonoBehaviour
         }
         Vector3 gravityMovement = new Vector3(0, verticalVelocity, 0);
         controller.Move(gravityMovement * Time.deltaTime);
+    }
+
+    void AnimateCharacter(){
+        if(_anim){
+            _anim.SetBool("Walking", isMoving);
+        }
     }
 }

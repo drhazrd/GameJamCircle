@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class JourneyMovement : MonoBehaviour
 {
     public float speed = 5.0f;
+    float sprintSpeed;
     public float turnSmoothTime = 0.1f;
     public float gravity = -9.81f;
     private CharacterController controller;
@@ -16,6 +17,7 @@ public class JourneyMovement : MonoBehaviour
     private Animator _anim;
     public bool isMoving {get; private set;}
     private bool isJumping;
+    private bool isSprinting;
 
     private void Awake()
     {
@@ -28,12 +30,25 @@ public class JourneyMovement : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if(context.performed){
+            isSprinting = true;
+            speed = 10f;
+            _anim.SetBool("Sprinting", isSprinting);
+        } 
+        if(context.canceled){
+            isSprinting = false;
+            speed = 5f;
+            _anim.SetBool("Sprinting", isSprinting);
+        }
+    }
 
     private void Update()
     {
         AnimateCharacter();
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
-        isMoving = direction == new Vector3(0,0) ? false:true;
+        isMoving = direction == new Vector3(0,0,0) ? false:true;
         if (controller.isGrounded)
         {
             verticalVelocity = 0; // Reset vertical velocity when grounded

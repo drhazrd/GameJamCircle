@@ -10,7 +10,9 @@ public class BombInventoryController : MonoBehaviour
     void Start(){}
 
     public void SetBomb(){
-        BombController preparedBomb = Instantiate (bombTypes[bombTypeID], setpoint.position, setpoint.rotation) as BombController;
+        if (bombTypes.Length > 0){
+            BombController preparedBomb = Instantiate (bombTypes[bombTypeID], setpoint.position, setpoint.rotation) as BombController;
+        }
     }
     public void SetBombID(int newTypeID){
         bombTypeID = newTypeID;

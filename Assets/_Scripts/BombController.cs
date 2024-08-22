@@ -12,10 +12,13 @@ public class BombController : MonoBehaviour
     
     bool player;
     bool hasExploded;
+    public GameObject radiusVFX;
+    public GameObject explodedVFX;
     
     void Update()
     {
         Countdown();
+        radiusVFX.transform.localScale = new Vector3(radius, radius, radius);
     }
 
     private void Countdown()
@@ -44,7 +47,7 @@ public class BombController : MonoBehaviour
             }
         }
         //Audio Clip
-        //VFX
+        if(explodedVFX != null) Instantiate(explodedVFX, transform.position, transform.rotation);
         yield return new WaitForSeconds(.01f);
         Destroy(this.gameObject);
     }

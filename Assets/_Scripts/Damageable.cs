@@ -12,14 +12,12 @@ public class Damageable : MonoBehaviour
     public void TakeDamage(int damage){
         health -= damage;
         if(health <= 0){
-            Instantiate(deathVFX, transform.position, transform.rotation);
             Die();
         }
     }
     void Die(){
-        AudioManager.instance.PlaySFXClip(deathSFX);
-        if(deathSFX != null){
-        }
-        Destroy(gameObject);
+        if(deathSFX != null) AudioManager.instance.PlaySFXClip(deathSFX);
+        if(deathSFX != null) Instantiate(deathVFX, transform.position, transform.rotation);
+        Destroy(gameObject, 3f);
     }
 }

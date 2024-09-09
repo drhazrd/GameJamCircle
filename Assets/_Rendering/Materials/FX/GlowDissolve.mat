@@ -92,7 +92,7 @@ Material:
     - _Mode: 0
     - _NoiseScale: 10
     - _Noise_Scale: 12.98
-    - _Noise_Strength: 0.14
+    - _Noise_Strength: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0

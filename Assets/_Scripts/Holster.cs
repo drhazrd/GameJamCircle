@@ -5,6 +5,7 @@ using UnityEngine;
 public class Holster : MonoBehaviour
 {
     [SerializeField] int selectedWeapon = 0;
+    public AudioClip swapSound;
     void Start()
     {
         SelectWeapon();
@@ -35,6 +36,7 @@ public class Holster : MonoBehaviour
             
             i++;
         }
+        if(swapSound != null) AudioManager.instance.PlaySFXClip(swapSound);
     }
     void WeaponUp(){
         if(selectedWeapon >= transform.childCount - 1)

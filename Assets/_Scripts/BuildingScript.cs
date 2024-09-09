@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class BuildingScript : MonoBehaviour
 {
-    public Color m_color;
+    public Material[] m_materials;
     Renderer m_renderer;
-    float r,b,g,a;
+    int materialID;
     void Start()
     {
-        r = UnityEngine.Random.Range(0f, 255f);
-        b = UnityEngine.Random.Range(0f, 255f);
-        g = UnityEngine.Random.Range(0f, 255f);
-        a = 1;
-        UpdateColor();
+        materialID = Random.Range(0, m_materials.Length);
+        m_renderer = GetComponent<Renderer>();
+        if(m_materials != null) m_renderer.material = m_materials[materialID];
     }
 
-    // Update is called once per frame
+        
+
     void UpdateColor()
     {
-        m_color = new Color(r,b,g);
-        m_color.a = 1f;
-        m_renderer = GetComponent<Renderer>();
-        m_renderer.material.color = m_color;
         
     }
 }

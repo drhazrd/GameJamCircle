@@ -62,7 +62,6 @@ public class BerddSlingShot : MonoBehaviour
         berrd.isKinematic = false;
         Vector3 berrdForce = (currentPosition - center.position) * force * -1;
         berrd.velocity = berrdForce;
-        Destroy(berrd.gameObject, 15f);
 
         berrd = null;
         berrdCollider = null;

@@ -13,6 +13,7 @@ public class Drone : MonoBehaviour
     Transform currentTarget;
     public Transform nextTarget;
     DroneManager dManager;
+    public Transform model;
 
     int speed;
     public GameObject destroyVFX;
@@ -34,6 +35,10 @@ public class Drone : MonoBehaviour
             if(Vector3.Distance(transform.position, nextTarget.position) <= 0.2f){
                 GetNextPathPoint();
             }
+        }
+        if(model != null){
+            Vector3 lookDirection = new Vector3(nextTarget.position.x, transform.localPosition.y, nextTarget.position.z);
+            model.LookAt(lookDirection);
         }
     }
     void GetNextPathPoint(){

@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arcade2DRacer : MonoBehaviour
+public class Resource : MonoBehaviour
 {
-    public float acceleratorFactor=30f;
-    public float turnFactor=3.5f;
-
-    public float acceleratorInput;
-    public float turnInput;
-
+    // Start is called before the first frame update
     void Start()
     {
         

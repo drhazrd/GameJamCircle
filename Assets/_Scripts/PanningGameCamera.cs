@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PanningGameCamera : MonoBehaviour
@@ -21,6 +22,9 @@ public class PanningGameCamera : MonoBehaviour
     public GameObject gameUI;
     public TextMeshProUGUI resourceText;
     public TextMeshProUGUI buildText;
+    public TextMeshProUGUI bulidPrefabText;
+    public Button upgradeButton;
+    public Color canbuildHere, cantbuildHere;
 
     [Header("Gameplay Debug")]
     int buildCount;
@@ -30,9 +34,13 @@ public class PanningGameCamera : MonoBehaviour
     bool canbuild;
     bool inBuildMode;
     float timer = 5;
-    int clock;
-    //public GameObject cursorPrefab; 
+    float clock;
+    int buildLevelCost = 150;
+    int buildLevel = 1;
+    int multiplier = 1;
+    public GameObject cursorMarkerPrefab; 
     private Transform cursorInstance;
+    private Transform cursorMarkerInstance;
 
     void Start(){
         cam = GetComponent<Camera>();
@@ -49,7 +57,7 @@ public class PanningGameCamera : MonoBehaviour
     {
         
         if(timer < 0){
-            resources += 3;
+            resources += 3 * multiplier;
             timer = 5;
         } else {
             timer -=  Time.deltaTime;
@@ -129,7 +137,12 @@ public class PanningGameCamera : MonoBehaviour
                 panSpeed = Mathf.Clamp(panSpeed, minZoom, maxZoom);
             }
         }
-        canbuild = buildCount < buildLimit && inBuildMode;
+        canbuild = buildCount < buildLimit && inBuildMode && resources > 0;
+        bool canUpgrade = resources > buildLevelCost ? true : false;
+        if(canUpgrade)upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Updgrade Level {buildLevelCost}"; else upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Next Level {buildLevelCost}";
+        if(cursorMarkerInstance != null){
+            cursorMarkerInstance.GetComponentInChildren<MeshRenderer>().material.color = canbuild ? canbuildHere : cantbuildHere; 
+        }
         if(canbuild){
             GenerateInWorldCursor(prefab, mousePosition, mouseTranslation);
             UpdateInWorldCursor(mousePosition, mouseTranslation);
@@ -144,7 +157,7 @@ public class PanningGameCamera : MonoBehaviour
             newBuild.GetComponentInChildren<BoxCollider>().enabled = true;
             Building newBuilding = newBuild.transform.GetComponentInChildren<Building>();
             resources -= newBuilding.cost;
-            
+            multiplier++;
             buildCount++;
         }
     }
@@ -159,17 +172,29 @@ public class PanningGameCamera : MonoBehaviour
             GameObject newPrefabGhost = Instantiate(prefab, pos, rot) as GameObject;
             cursorInstance = newPrefabGhost.transform;
         }
+        if(canbuild && cursorMarkerInstance == null){
+            GameObject newMarkerGhost = Instantiate(cursorMarkerPrefab, pos, rot) as GameObject;
+            cursorMarkerInstance = newMarkerGhost.transform;
+        }
     }
     void DestroyInWorldCursor(){
         if(cursorInstance != null) {
             Destroy(cursorInstance.gameObject); 
             cursorInstance = null;
         }
+        if(cursorMarkerInstance != null){
+            Destroy(cursorMarkerInstance.gameObject);
+            cursorMarkerInstance = null;
+        }
     }
     void UpdateInWorldCursor(Vector3 pos, Quaternion rot){
         if(cursorInstance != null){
             cursorInstance.position = pos;
             cursorInstance.rotation = rot;
+        }
+        if(cursorMarkerInstance != null){
+            cursorMarkerInstance.position = pos;
+            cursorMarkerInstance.rotation = rot;
         }
     }
     void UpdateInWorldCursorPrefab(GameObject gObj){
@@ -182,7 +207,15 @@ public class PanningGameCamera : MonoBehaviour
         Debug.Log("Swap");
     }
     void UpdateUI(){
-        if(buildText != null) buildText.text = $"Buildings {buildCount} / {buildLimit}";
-        if(resourceText != null) resourceText.text = $"Buildings {resources} / {resourceLimit}";
+        if(buildText != null) buildText.text = $"Build Level: {buildLevel}  ({buildCount} / {buildLimit})";
+        if(resourceText != null) resourceText.text = $"Local Resources: $ {resources}";
+    }
+    public void IncresceBuildLvl(){
+        if(resources > buildLevelCost){
+            resources -= buildLevelCost;
+            buildLevel++;
+            buildLimit += 10;
+            buildLevelCost += 50 * multiplier;
+        }
     }
 }

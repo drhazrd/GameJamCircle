@@ -17,7 +17,7 @@ public class Damageable : MonoBehaviour
     }
     void Die(){
         if(deathSFX != null) AudioManager.instance.PlaySFXClip(deathSFX);
-        if(deathSFX != null) Instantiate(deathVFX, transform.position, transform.rotation);
+        if(deathVFX != null) Instantiate(deathVFX, transform.position, transform.rotation);
         Destroy(gameObject, 3f);
     }
 }

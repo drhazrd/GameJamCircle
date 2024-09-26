@@ -156,6 +156,7 @@ public class PanningGameCamera : MonoBehaviour
             GameObject newBuild = Instantiate(prefab, pos, rot) as GameObject;
             newBuild.GetComponentInChildren<BoxCollider>().enabled = true;
             Building newBuilding = newBuild.transform.GetComponentInChildren<Building>();
+            newBuilding.autoSpawn = true;
             resources -= newBuilding.cost;
             multiplier++;
             buildCount++;

@@ -5,8 +5,27 @@ using TMPro;
 
 public class StrategyManager : MonoBehaviour
 {
+    public static StrategyManager gameAdjudicator { get; private set; }
+
     float gameTime;
     public TextMeshProUGUI gameTimeText;
+    public Transform mainBaseLocation;
+    public Resource[] resourceLocations;
+
+    private void Awake()
+    {
+        if (gameAdjudicator == null)
+        {
+            gameAdjudicator = this;
+            DontDestroyOnLoad(gameObject); 
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    
     void Start()
     {
         gameTime = 0;

@@ -175,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2870999034097615078}
+  - component: {fileID: 8182739636479867261}
   m_Layer: 0
   m_Name: Building A
   m_TagString: Untagged
@@ -199,6 +200,24 @@ Transform:
   - {fileID: 7715031544632734793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8182739636479867261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706225016503917158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4363b2d63cfa6f045968b977830fd864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
+  value: 5
+  timeToBuild: 1
+  type: 1
+  mobSpawn: {fileID: 7312292683255690086, guid: cb4ff1b6df1fd8f4c95f535a517b5fe6, type: 3}
+  autoSpawn: 0
 --- !u!1 &4011030474401404163
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +543,8 @@ MonoBehaviour:
   value: 5
   timeToBuild: 7
   type: 2
+  mobSpawn: {fileID: 0}
+  autoSpawn: 0
 --- !u!1 &8448937004491678128
 GameObject:
   m_ObjectHideFlags: 0

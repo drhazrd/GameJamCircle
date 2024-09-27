@@ -12,9 +12,12 @@ public class Building : MonoBehaviour
     public MobUnit mobSpawn;
     float timeBetweenSpawn = 2.5f;
     public bool autoSpawn;
+    public bool canSpawn;
     bool spawnReady;
     Transform resource;
     Transform mainBase;
+    int currentSpawn;
+    public int maxSpawn = 5;
 
     void Start(){
         if(spawnArea == null){
@@ -26,17 +29,20 @@ public class Building : MonoBehaviour
     }
 
     public void SpawnMob(){
+        autoSpawn = currentSpawn < maxSpawn;
         if(mobSpawn != null && !spawnReady){
             MobUnit newUnit = Instantiate(mobSpawn, spawnArea.position, spawnArea.rotation) as MobUnit;
             newUnit.UpdateTargets(transform, resource);
             spawnReady = true;
         }
+
     }
 
     IEnumerator MobSpawnProcess(float time){
-        while(autoSpawn){
+        while(autoSpawn && canSpawn){
             yield return new WaitForSeconds(time);
             SpawnMob();
+            currentSpawn++;
             spawnReady = false;
         }
     }

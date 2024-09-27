@@ -7,6 +7,8 @@ public class Rifle : Gun
     Animator anim;
     private float nextTimeToFire = 0f;
     [SerializeField] AudioClip fireSFX, reloadSFX, emptysfx;
+    public bool camFX;
+
     void Start()
     {
         isReloading = false;
@@ -40,7 +42,7 @@ public class Rifle : Gun
     void Shoot(){
         currentAmmo--;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        CameraEffects.camEffects.Shake(.05f);
+        if(camFX)CameraEffects.camEffects.Shake(.05f);
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
     }

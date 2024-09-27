@@ -8,6 +8,8 @@ public class Pistol : Gun
     private float nextTimeToFire = 0f;
     [SerializeField] AudioClip fireSFX, reloadSFX, emptysfx;
     InputManager controls;
+    public bool camFX;
+
 
     void Start(){
         isReloading = false;

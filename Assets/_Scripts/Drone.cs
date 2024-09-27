@@ -42,12 +42,12 @@ public class Drone : MonoBehaviour
         }
     }
     void GetNextPathPoint(){
-        if(targetIndex > pathTargets.Length - 1){
+        if(pathTargets == null || targetIndex > pathTargets.Length - 1){
             dManager.drones.Remove(this);
             DestroyDrone();
         }else {
-            targetIndex++;
             nextTarget = pathTargets[targetIndex];
+            targetIndex++;
         }
     }
        void DestroyDrone(){

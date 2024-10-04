@@ -10,7 +10,7 @@ public class StrategyManager : MonoBehaviour
     float gameTime;
     public TextMeshProUGUI gameTimeText;
     public Transform mainBaseLocation;
-    public Resource[] resourceLocations;
+    public List <Resource> resourceLocations = new List<Resource>();
 
     private void Awake()
     {

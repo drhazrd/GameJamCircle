@@ -11910,8 +11910,8 @@ MonoBehaviour:
   spawnTarget: {fileID: 1263939518}
   canSpawn: 1
   spawnDelay: 0.1
-  droneSpeed: 5
-  timeBetweenWaves: 1
+  droneSpeed: 3
+  timeBetweenWaves: 14.29
   waveDataText: {fileID: 549544908}
 --- !u!33 &337537747
 MeshFilter:
@@ -56882,6 +56882,10 @@ PrefabInstance:
     - target: {fileID: 8758851041169616079, guid: 8a93108c03154fa4096bf8c110a60589, type: 3}
       propertyPath: range
       value: 16.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758851041169616079, guid: 8a93108c03154fa4096bf8c110a60589, type: 3}
+      propertyPath: fireRate
+      value: 0.43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

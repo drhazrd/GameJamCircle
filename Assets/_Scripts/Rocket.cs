@@ -18,10 +18,12 @@ public class Rocket : MonoBehaviour
     {
         if(target == null){
             Destroy(gameObject);
+            if(destroyVFX != null) Instantiate(destroyVFX, transform.position, transform.rotation);
             return;
         }
 
         Vector3 dir = target.position - transform.position;
+        transform.LookAt(target);
         float distanceThisFrame = speed * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame){
@@ -34,6 +36,7 @@ public class Rocket : MonoBehaviour
     private void HitTarget()
     {
         Destroy(gameObject);
+        Destroy(target.gameObject);
         if(destroyVFX != null) Instantiate(destroyVFX, transform.position, transform.rotation);
     }
 }

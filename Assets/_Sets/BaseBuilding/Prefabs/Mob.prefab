@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   harvestTime: 3
+  harvestAmount: 20
   depositTime: 1.5
   targetBase: {fileID: 0}
   targetResource: {fileID: 0}

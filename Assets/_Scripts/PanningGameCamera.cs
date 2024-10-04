@@ -37,10 +37,12 @@ public class PanningGameCamera : MonoBehaviour
     float clock;
     int buildLevelCost = 150;
     int buildLevel = 1;
+    int maxBuildLevel = 4;
     int multiplier = 1;
     public GameObject cursorMarkerPrefab; 
     private Transform cursorInstance;
     private Transform cursorMarkerInstance;
+    public int defaultResource = 3;
 
     void Start(){
         cam = GetComponent<Camera>();
@@ -57,7 +59,7 @@ public class PanningGameCamera : MonoBehaviour
     {
         
         if(timer < 0){
-            resources += 3 * multiplier;
+            resources += defaultResource * multiplier;
             timer = 5;
         } else {
             timer -=  Time.deltaTime;
@@ -94,13 +96,13 @@ public class PanningGameCamera : MonoBehaviour
         if(Input.GetKeyDown("q")){
             currentBuildID--;
             if(currentBuildID < 0){
-                currentBuildID = buildingPrefabs.Length - 1;
+                currentBuildID = buildLevel - 1;
             }
             SwapBuildings(currentBuildID);
         }
         if(Input.GetKeyDown("e")){
             currentBuildID++;
-            if(currentBuildID > buildingPrefabs.Length - 1){
+            if(currentBuildID > buildLevel - 1){
                 currentBuildID = 0;
             }
             SwapBuildings(currentBuildID);
@@ -199,9 +201,7 @@ public class PanningGameCamera : MonoBehaviour
             cursorMarkerInstance.rotation = rot;
         }
     }
-    void UpdateInWorldCursorPrefab(GameObject gObj){
-        GenerateInWorldCursor(gObj, cursorInstance.position, cursorInstance.rotation);
-    }
+    
     void SwapBuildings(int id){
         DestroyInWorldCursor();
         cursorInstance = null;
@@ -215,9 +215,9 @@ public class PanningGameCamera : MonoBehaviour
     public void IncresceBuildLvl(){
         if(resources > buildLevelCost){
             resources -= buildLevelCost;
-            buildLevel++;
+            if(buildLevel < maxBuildLevel) buildLevel++;
             buildLimit += 10;
-            buildLevelCost += 50 * multiplier;
+            buildLevelCost += 5 * multiplier;
         }
     }
 }

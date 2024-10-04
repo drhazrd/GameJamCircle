@@ -8,6 +8,7 @@ public class Deomon : MonoBehaviour
     public Transform target;
     public float range = 15f;
     public float turnSpeed = 15f;
+    public float projectileSpeed = 7f;
     public float fireRate = 1f;
     public float fireCountdown = 0f;
     public GameObject projectile;
@@ -62,6 +63,7 @@ public class Deomon : MonoBehaviour
                 Rocket rocket = newProjectile.GetComponent<Rocket>();
                 if(rocket != null){
                     rocket.Seek(target);
+                    rocket.speed = projectileSpeed;
                 }
             }
         } 

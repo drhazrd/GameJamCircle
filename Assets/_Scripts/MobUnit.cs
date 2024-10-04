@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Codice.ThemeImages;
 using UnityEngine;
 
 public class MobUnit : MonoBehaviour
@@ -8,9 +9,11 @@ public class MobUnit : MonoBehaviour
     int level = 1;
     public float speed = 1f;
     public float harvestTime = 3f;
+    public float harvestAmount = 3f;
     public float depositTime = 1.5f;
     public Transform targetBase;
     public Transform targetResource;
+    private Resource resource;
     Transform currentTarget;
     bool canAct;
 
@@ -23,9 +26,16 @@ public class MobUnit : MonoBehaviour
 
     void Update()
     {
-        if (canAct)
-        {
-            MoveToLocation(currentTarget.position);
+        if(targetResource == null){
+            MoveToLocation(targetBase.position);
+            resource = null;
+        } else {
+
+            if (canAct)
+            {
+                MoveToLocation(currentTarget.position);
+                transform.LookAt(currentTarget);
+            }
         }
     }
 
@@ -39,6 +49,7 @@ public class MobUnit : MonoBehaviour
         targetBase = t1;
         targetResource = t2;
         currentTarget = targetResource;
+        resource = targetResource.GetComponent<Resource>();
     }
     void SwitchTarget(){
         //Switch the target by setting timer harvestTime and the resource loctation or sets the timer to the base location and the depositTime on the timer
@@ -67,6 +78,10 @@ public class MobUnit : MonoBehaviour
     IEnumerator PerformAction()
     {
         yield return new WaitForSeconds(decisionTimer);
+        if (resource ==null){
+            Destroy(gameObject);
+        }
+        if(resource != null) resource.Harvest(harvestAmount);
         SwitchTarget();
         canAct = true;
     }

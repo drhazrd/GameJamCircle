@@ -19,13 +19,24 @@ public class Building : MonoBehaviour
     int currentSpawn;
     public int maxSpawn = 5;
 
+    float healthCurrent;
+    public float healthMax;
+    public SliderBar statusBar;
+    StrategyManager manager;
+
+
     void Start(){
         if(spawnArea == null){
             spawnArea = this.transform;
         }
+        if(statusBar != null){
+            statusBar.SetupBar(healthCurrent, healthMax, this.name);
+        }
         StartCoroutine(MobSpawnProcess(timeBetweenSpawn));
-        mainBase = StrategyManager.gameAdjudicator.mainBaseLocation;
-        resource = StrategyManager.gameAdjudicator.resourceLocations[0].transform;
+        manager = StrategyManager.gameAdjudicator;
+        mainBase = manager.mainBaseLocation;
+        int resourceIndex = Random.Range(0, manager.resourceLocations.Count - 1);
+        resource = manager.resourceLocations[resourceIndex].transform;
     }
 
     public void SpawnMob(){
@@ -46,8 +57,14 @@ public class Building : MonoBehaviour
             spawnReady = false;
         }
     }
-
+    void Update(){
+        if(healthCurrent > 0){
+            statusBar.UpdateBar(healthCurrent);
+        }
+    }
 }
+
+
 public enum BuildingType{
     Resource,
     Harvest,

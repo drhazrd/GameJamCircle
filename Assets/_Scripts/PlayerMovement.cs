@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isMoving;
     private float playerSpeed = 2.0f;
+    private float walkSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
+    private float groundedGravity = -0.1f;
 
     private void Start()
     {
@@ -21,15 +23,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (controller.isGrounded)
+        isGrounded = Grounded();
+
+        if (isGrounded)
         {
-            playerVelocity.y = 0f; // Reset the vertical velocity when grounded
-            isGrounded = true;
+            playerVelocity.y = groundedGravity; // Apply small downward force when grounded
         }
         else
         {
-            isGrounded = false;
+            playerVelocity.y += gravityValue * Time.deltaTime; // Apply gravity when not grounded
         }
+
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         controller.Move(move * Time.deltaTime * playerSpeed);
@@ -50,8 +54,24 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
+        if (Input.GetButtonDown("Sprint") && isGrounded)
+        {
+            playerSpeed = walkSpeed * 2f;
+        }else playerSpeed = walkSpeed;
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        if(!isGrounded) playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+    bool Grounded(){
+        float groundCheckDistance;
+        float bufferCheckDistance = 0.1f;
+
+        groundCheckDistance = (controller.height / 2) + bufferCheckDistance;
+
+        RaycastHit hit;
+        if(Physics.Raycast (transform.position, - transform.up, out hit, groundCheckDistance)){
+            return true;
+        } else 
+        return false;
     }
 }

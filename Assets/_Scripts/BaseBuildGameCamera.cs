@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,10 +15,11 @@ public class BaseBuildGameCamera : MonoBehaviour
     public float maxZoom = 10f;
     [SerializeField] float panShrink = 2f;
     Vector3 mousePosition;
-    Quaternion mouseTranslation;
 
     [Header("Placement Info")]
     Camera cam;
+    [SerializeField] public ObjectDatabaseSO database;
+    int currentObjectID;
     int currentBuildID;
     public GameObject prefab;
     public GameObject[] buildingPrefabs;
@@ -24,27 +28,24 @@ public class BaseBuildGameCamera : MonoBehaviour
     public GameObject cursorMarkerPrefab; 
     private Transform cursorInstance;
     private Transform cursorMarkerInstance;
+    public GameObject gridHolder;
+    public GameObject gameUI;
     public Grid grid;
     
 
     [Header("UI Debug")]
-    public GameObject gameUI;
     public TextMeshProUGUI resourceText;
     public TextMeshProUGUI buildText;
-    public TextMeshProUGUI bulidPrefabText;
-    public Button upgradeButton;
-    public Color canbuildHere, cantbuildHere;
 
+    public event Action OnClicked, OnExit;
     [Header("Gameplay Debug")]
+
     bool isPaused;
-    float timer = 5;
-    float clock;
+
 
     int buildCount;
     int buildLimit = 10;
     public int resources;
-    int resourceLimit = 999;
-    bool canbuild;
     bool inBuildMode;
     int buildLevelCost = 150;
     int buildLevel = 1;
@@ -54,14 +55,34 @@ public class BaseBuildGameCamera : MonoBehaviour
         cam = GetComponent<Camera>();
         if (cam == null)
         {
-            cam = Camera.main; // Default to main camera if none assigned
+            cam = Camera.main;
         }
         cam.orthographic = isOrthagraphic;
-        GameObject newMouse = Instantiate(prefab, mousePosition, Quaternion.identity) as GameObject;
-        cursorInstance = newMouse.transform;
-        //GameObject newIndicatior = Instantiate(cursorMarkerPrefab, mousePosition, Quaternion.identity) as GameObject;
-        cursorMarkerInstance = cursorMarkerPrefab.transform; //newIndicatior.transform;
-
+        StopPlacement();
+    }
+    void StartPlacement(int ID){
+        StopPlacement();
+        currentObjectID = database.objectData.FindIndex(data => data.ID == ID);
+        if(currentObjectID < 0){
+            return;
+        }
+        GenerateVisuals();
+        OnClicked += Build;
+        OnExit += StopPlacement;
+    }
+    void StopPlacement(){
+        currentObjectID = -1;
+        DestroyVisuals();
+        OnClicked -= Build;
+        OnExit -= StopPlacement;
+    }
+    void EnterBuildMode(){
+        inBuildMode = true;
+        StartPlacement(currentObjectID);
+    }
+    void ExitBuildMode(){
+        inBuildMode = false;
+        StopPlacement();
     }
     void AlignToGrid(){
         Vector3 newMousePosition = mousePosition;
@@ -88,6 +109,7 @@ public class BaseBuildGameCamera : MonoBehaviour
         return lastPosition;
     
     }
+    public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
     void Update()
     {
         mousePosition = GetSelectedMapPosition();
@@ -110,7 +132,12 @@ public class BaseBuildGameCamera : MonoBehaviour
             pos.x -= panSpeed * Time.deltaTime;
         }
         if(Input.GetKeyDown(KeyCode.Tab)){
-            inBuildMode = !inBuildMode;
+            if(!inBuildMode){
+                EnterBuildMode();
+            }else{
+                ExitBuildMode();
+            }
+            gameUI.SetActive(inBuildMode);
         }
     
         if(Input.GetKeyDown("r")){
@@ -135,13 +162,15 @@ public class BaseBuildGameCamera : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
-            cam.orthographicSize -= scroll * zoomSpeed;
             panSpeed -= scroll * panShrink;
             if(isOrthagraphic){
+                cam.orthographicSize -= scroll * zoomSpeed;
                 cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
                 panSpeed = Mathf.Clamp(panSpeed, minZoom, maxZoom);
             } else {
-                cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, 30f, 80f);
+                Vector3 camPosition = cam.transform.position;
+                camPosition.y = Mathf.Clamp(camPosition.y, 30f, 80f); // Adjust the y-axis for zooming
+                cam.transform.position = camPosition;
                 panSpeed = Mathf.Clamp(panSpeed, minZoom, maxZoom);
             }
         }
@@ -150,7 +179,7 @@ public class BaseBuildGameCamera : MonoBehaviour
         UpdateUI();
 
         if (Input.GetMouseButtonDown(0)){
-            //Build
+            Build();
         }
         if (Input.GetMouseButtonDown(1)){
             //UnBuild
@@ -158,17 +187,18 @@ public class BaseBuildGameCamera : MonoBehaviour
     }
 
 
-    void Build(GameObject prefab, Vector3 pos, Quaternion rot){
-        if(canbuild){
-            GameObject newBuild = Instantiate(prefab, pos, rot) as GameObject;
-            newBuild.GetComponentInChildren<BoxCollider>().enabled = true;
-            Building newBuilding = newBuild.transform.GetComponentInChildren<Building>();
-            newBuilding.canSpawn = true;
-            newBuilding.autoSpawn = true;
-            resources -= newBuilding.cost;
-            multiplier++;
-            buildCount++;
+    void Build(){
+        if(IsPointerOverUI()){
+            return;
         }
+        Vector3 newMousePosition = mousePosition;
+        if (cursorInstance != null)
+        {
+            cursorInstance.position = newMousePosition;
+        }
+        Vector3Int gridPosition = grid.WorldToCell(newMousePosition);
+        GameObject newBuild = Instantiate(database.objectData[currentObjectID].Prefab);
+        newBuild.transform.position = grid.CellToWorld(gridPosition);
     }
     void UnBuild(GameObject prefab){
         Building targetBuilding = prefab.transform.GetComponent<Building>();
@@ -176,48 +206,34 @@ public class BaseBuildGameCamera : MonoBehaviour
         Destroy(targetBuilding);
         buildCount--;
     }
-    void GenerateInWorldCursor(GameObject prefab, Vector3 pos, Quaternion rot){
-        if(canbuild && cursorInstance == null){
-            GameObject newPrefabGhost = Instantiate(prefab, pos, rot) as GameObject;
-            cursorInstance = newPrefabGhost.transform;
-        }
-        if(canbuild && cursorMarkerInstance == null){
-            GameObject newMarkerGhost = Instantiate(cursorMarkerPrefab, pos, rot) as GameObject;
-            cursorMarkerInstance = newMarkerGhost.transform;
-        }
+    
+    void GenerateVisuals()
+    {
+        GameObject newMouse = Instantiate(prefab, mousePosition, Quaternion.identity) as GameObject;
+        cursorInstance = newMouse.transform;
+        GameObject newIndicatior = Instantiate(cursorMarkerPrefab, mousePosition, Quaternion.identity) as GameObject;
+        cursorMarkerInstance = newIndicatior.transform;
+        gridHolder.SetActive(true);
     }
-    void DestroyInWorldCursor(){
-        if(cursorInstance != null) {
-            Destroy(cursorInstance.gameObject); 
+    void DestroyVisuals(){
+        
+        if(cursorInstance != null){
+            Destroy(cursorInstance.gameObject);
             cursorInstance = null;
         }
         if(cursorMarkerInstance != null){
             Destroy(cursorMarkerInstance.gameObject);
             cursorMarkerInstance = null;
         }
+        if(gridHolder != null)gridHolder.SetActive(false);
     }
-    void UpdateInWorldCursor(Vector3 pos, Quaternion rot){
-        if(cursorInstance != null){
-            cursorInstance.position = pos;
-            cursorInstance.rotation = rot;
-        }
-        if(cursorMarkerInstance != null){
-            cursorMarkerInstance.position = pos;
-            cursorMarkerInstance.rotation = rot;
-        }
-    }
-    void UpdateInWorldCursorPrefab(GameObject gObj){
-        GenerateInWorldCursor(gObj, cursorInstance.position, cursorInstance.rotation);
-    }
+
     void SwapBuildings(int id){
-        DestroyInWorldCursor();
-        cursorInstance = null;
-        prefab = buildingPrefabs[currentBuildID];
-        Debug.Log("Swap");
     }
     void UpdateUI(){
         if(buildText != null) buildText.text = $"Build Level: {buildLevel}  ({buildCount} / {buildLimit})";
         if(resourceText != null) resourceText.text = $"Local Resources: $ {resources}";
+        if(gridHolder != null && inBuildMode) gridHolder.SetActive(true); else gridHolder.SetActive(false);
     }
     public void IncresceBuildLvl(){
         if(resources > buildLevelCost){

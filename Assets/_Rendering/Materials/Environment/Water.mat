@@ -60,14 +60,14 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 10
-    - _FoamOffset: 2.88
+    - _FoamOffset: 2.33
     - _Gloss: 0.07
     - _Metallic: 0.28
-    - _NormalStrength: 2.49
+    - _NormalStrength: 10.88
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RippleDissolve: 3.67
+    - _RippleDissolve: 11.25
     - _RippleScale: 5
     - _RippleSpeed: 2.3
     - _SrcBlend: 5

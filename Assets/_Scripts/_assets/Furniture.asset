@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d1a7b4e8957444faabf417f47f4ecb, type: 3}
+  m_Name: Furniture
+  m_EditorClassIdentifier: 
+  objectData:
+  - <Name>k__BackingField: Grain Patch
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 8751293261589110288, guid: 57f6c0ffc990da84cafef205e120c91d, type: 3}
+  - <Name>k__BackingField: Arrow Target
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 6719491712537054140, guid: 0bd136e4d61d8894ab3085b251e29975, type: 3}
+  - <Name>k__BackingField: Tent
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 383354569488982783, guid: a86cee5d4666979489b245a1f7982ff6, type: 3}
+  - <Name>k__BackingField: Stand
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 1957165294371459179, guid: a99968e52259da34a90009a6ce5e66a6, type: 3}
+  - <Name>k__BackingField: Crate
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 3158612181683303588, guid: 9b98cb61acb13e047bc4b037d7913189, type: 3}
+  - <Name>k__BackingField: Camp Fire
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 7572192007298519379, guid: 31443c14f25be0b4cbe97e56ad2db3b5, type: 3}
+  - <Name>k__BackingField: Lumber
+    <Description>k__BackingField: 
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 0, y: 0}
+    <Prefab>k__BackingField: {fileID: 6639402710461914242, guid: 451ef4c07e0aca94cbac44a459e3f895, type: 3}

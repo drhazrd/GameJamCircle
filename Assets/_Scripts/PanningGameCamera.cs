@@ -59,7 +59,7 @@ public class PanningGameCamera : MonoBehaviour
     {
         
         if(timer < 0){
-            resources += defaultResource * multiplier;
+            if(resources < resourceLimit)resources += defaultResource * multiplier;
             timer = 5;
         } else {
             timer -=  Time.deltaTime;

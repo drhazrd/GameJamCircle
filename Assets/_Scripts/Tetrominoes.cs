@@ -10,11 +10,7 @@ public class Tetrominoes : MonoBehaviour
     public static int height = 20;
     public static int width = 10;
     private static Transform[,] grid = new Transform[width, height];
-    void Start()
-    {
-        
-    }
-
+ 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.LeftArrow)){

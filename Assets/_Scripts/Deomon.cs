@@ -49,7 +49,7 @@ public class Deomon : MonoBehaviour
         
         if(fireCountdown <= 0f){
             Shoot();
-            fireCountdown = 1f / fireRate;
+            fireCountdown = fireRate;
         }
         if(fireCountdown > 0) fireCountdown -= Time.deltaTime;
     }

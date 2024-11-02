@@ -39,6 +39,7 @@ public class PlayerStats : MonoBehaviour
 
         if(currentExp >= nextLevelExp){
             LevelUp();
+            onLevelUp?.Invoke();
             nextLevelExp = GetNeedExp(currentLevel);
             previousExp = GetNeedExp(currentLevel - 1);
         }

@@ -44,6 +44,6 @@ public class Pistol : Gun
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
-        CameraEffects.camEffects.Shake(.05f);
+        if(camFX)CameraEffects.camEffects.Shake(.05f);
     }
 }

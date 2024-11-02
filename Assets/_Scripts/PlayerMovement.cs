@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
         _anim = GetComponentInChildren<Animator>();
     }
 
+    void FixedUpdate(){
+        Movement();
+    }
+
     void Update()
     {
         isGrounded = Grounded();
@@ -34,21 +38,6 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y += gravityValue * Time.deltaTime; // Apply gravity when not grounded
         }
 
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
-        {
-            transform.forward = move;
-            _anim.SetBool("isRunning", true);
-            Debug.Log("Move");
-        }
-        else{
-            _anim.SetBool("isRunning", false);
-            Debug.Log("No move");
-        }
-
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -56,10 +45,29 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("Sprint") && isGrounded)
         {
+            _anim.SetBool("Sprint", true);
             playerSpeed = walkSpeed * 2f;
-        }else playerSpeed = walkSpeed;
 
-        if(!isGrounded) playerVelocity.y += gravityValue * Time.deltaTime;
+        }else{
+            playerSpeed = walkSpeed;
+            _anim.SetBool("Sprint", false);
+        } 
+
+
+        //if(!isGrounded) playerVelocity.y += gravityValue * Time.deltaTime;
+    }
+    void Movement(){
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if (move != Vector3.zero)
+        {
+            transform.forward = move;
+            _anim.SetBool("isRunning", true);
+        }
+        else{
+            _anim.SetBool("isRunning", false);
+        }
         controller.Move(playerVelocity * Time.deltaTime);
     }
     bool Grounded(){

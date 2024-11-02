@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
-    
+    public Selectable firstSelected;
+    void Start(){
+        firstSelected.Select();
+    }
     public void LoadLevel(string name)
     {
         Debug.Log("Loading: " + name);

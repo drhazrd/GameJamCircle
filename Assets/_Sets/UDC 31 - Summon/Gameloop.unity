@@ -30204,7 +30204,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.98, y: 2.5676084, z: -5.98}
+  m_LocalPosition: {x: 0, y: 5.4106083, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56887,6 +56887,10 @@ PrefabInstance:
       propertyPath: fireRate
       value: 0.43
       objectReference: {fileID: 0}
+    - target: {fileID: 8758851041169616079, guid: 8a93108c03154fa4096bf8c110a60589, type: 3}
+      propertyPath: projectileSpeed
+      value: 20.85
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -61743,7 +61747,7 @@ Transform:
   m_GameObject: {fileID: 667978611267823330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.98, y: 1.857, z: -5.98}
+  m_LocalPosition: {x: 0, y: 4.7, z: 0.2}
   m_LocalScale: {x: 0.66412, y: 0.66412, z: 0.66412}
   m_ConstrainProportionsScale: 0
   m_Children:

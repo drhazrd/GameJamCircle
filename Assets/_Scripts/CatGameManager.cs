@@ -31,6 +31,12 @@ public class CatGameManager : MonoBehaviour
     }
 
     void Update(){
+        if(time > 0){
+            time -= Time.deltaTime;
+        }else if (time <= 0){
+            time = 480;
+            days++;
+        }
         if(!paused) time += Time.deltaTime; else return;
         gameData.text = time.ToString("00");
     }

@@ -19,9 +19,15 @@ public class MobUnit : MonoBehaviour
 
     void Start()
     {
-        // Initialize the mob unit
+        LevelSet();
         canAct = true;
         currentTarget = targetResource; // Start by moving to the resource
+    }
+    void LevelSet(){
+        speed *= level;
+        harvestAmount *= level;
+        harvestTime /= level;
+        depositTime /= level;
     }
 
     void Update()

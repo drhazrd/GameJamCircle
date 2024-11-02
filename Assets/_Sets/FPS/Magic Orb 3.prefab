@@ -23898,7 +23898,7 @@ MonoBehaviour:
   speed: 50
   lifeTime: 2.3
   damageToGive: 1
-  impactEffect: {fileID: 3425104300422963110, guid: 7fd2262081954b84cb683ac4a2736144, type: 3}
+  impactEffect: {fileID: 1228869523896316, guid: cfd26614dff7742469a59d19d1403e93, type: 3}
 --- !u!135 &8733209042622613472
 SphereCollider:
   m_ObjectHideFlags: 0

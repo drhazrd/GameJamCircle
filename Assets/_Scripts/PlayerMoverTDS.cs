@@ -72,8 +72,10 @@ public class PlayerMoverTDS : MonoBehaviour
     }
     void Aim()
     {
-        Vector2 aimDirection = aimPosition - rb.position;
-        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
-        aimObj.transform.rotation = Quaternion.Euler(0, 0, aimAngle);
+        if(!gamePad){
+            Vector2 aimDirection = aimPosition - rb.position;
+            float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+            aimObj.transform.rotation = Quaternion.Euler(0, 0, aimAngle);
+        }
     }
 }

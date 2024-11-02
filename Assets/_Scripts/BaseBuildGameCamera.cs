@@ -202,7 +202,7 @@ public class BaseBuildGameCamera : MonoBehaviour
     }
     void UnBuild(GameObject prefab){
         Building targetBuilding = prefab.transform.GetComponent<Building>();
-        resources += targetBuilding.value;
+        if(resources < resourceLimit) resources += targetBuilding.value;
         Destroy(targetBuilding);
         buildCount--;
     }

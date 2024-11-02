@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour
     Animator _anim;
     int _currentState;
     float _attackAnimTime = .25f;
+    float _landAnimDuration = .25f;
     private bool _grounded;
     private bool _attacked;
     private bool _landed;
@@ -20,6 +21,7 @@ public class CharacterAnimation : MonoBehaviour
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int CrouchWalk = Animator.StringToHash("CrouchWalk");
     private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Land = Animator.StringToHash("Land");
     private static readonly int Attack = Animator.StringToHash("Attack");
 
     void Start()
@@ -54,7 +56,7 @@ public class CharacterAnimation : MonoBehaviour
         // Priorities
         if (_attacked) return LockState(Attack, _attackAnimTime);
         //if (_player.Crouching) return Crouch;
-        //if (_landed) return LockState(Land, _landAnimDuration);
+        if (_landed) return LockState(Land, _landAnimDuration);
         if (_jumpTriggered) return Jump;
 
         if (_grounded) return playerInput.horizontal == 0 ? Idle : Walk;

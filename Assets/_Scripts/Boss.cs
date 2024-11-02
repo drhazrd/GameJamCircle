@@ -63,4 +63,9 @@ public class Boss : MonoBehaviour
         Rigidbody rb = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
     }
+    public void TakeDamage(int v){
+        if(health > 0){
+            health += v;
+        }
+    }
 }

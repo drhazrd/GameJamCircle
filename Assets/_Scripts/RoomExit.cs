@@ -9,7 +9,7 @@ public class  RoomExit : MonoBehaviour
     public string levelStringToLoad;
     void OnTriggerEnter2D(Collider2D col){
         if (col.tag == "Player"){
-            if(levelIntToLoad != null){
+            if(levelIntToLoad > 0){
                 SceneManager.LoadScene(levelIntToLoad);
             }else if(levelStringToLoad != null && levelStringToLoad != ""){
                 SceneManager.LoadScene(levelStringToLoad);

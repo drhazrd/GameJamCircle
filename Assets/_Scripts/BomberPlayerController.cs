@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class BomberPlayerController : MonoBehaviour
 {
     float speed = 2f;
-    float jumpForce = 10f;
+    float jumpForce = 1f;
     float dashForce = 8f;
     private Vector2 moveInput;
     private Vector3 moveVelocity;
@@ -17,8 +17,6 @@ public class BomberPlayerController : MonoBehaviour
 
     public static event PlayerControllerSpawned onBomberSpawn;
     public delegate void PlayerControllerSpawned (Transform bomber);
-    public Transform _groundChecker;
-    public LayerMask groundLayer;
     private float gravityValue = -9.81f;
 
 
@@ -26,7 +24,8 @@ public class BomberPlayerController : MonoBehaviour
     bool isGrounded;
 
     float groundedGravity = -0.1f;
-
+    float groundCheckDistance;
+    
     void Awake(){
         controls = new TestControls();
     }
@@ -41,6 +40,7 @@ public class BomberPlayerController : MonoBehaviour
         controls.Player.Use.performed += _ => ToggleAccessory();
         controls.Player.Interact.performed += _ => Interact();
         controls.Player.Action.performed += _ => Plant();
+        controls.Player.Jump.performed += _ => Jump();
     }
     void OnEnable(){
         controls.Enable();
@@ -51,6 +51,17 @@ public class BomberPlayerController : MonoBehaviour
     void Update(){
         HandleInput();
         isGrounded = Grounded();
+        
+        if (isGrounded)
+        {
+            moveVelocity.y = groundedGravity; // Apply small downward force when grounded
+            Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red); 
+        }
+        else
+        {
+            moveVelocity.y += gravityValue * Time.deltaTime; // Apply gravity when not grounded
+            Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.green); 
+        }
     }
     void FixedUpdate(){
         Movement();
@@ -60,31 +71,20 @@ public class BomberPlayerController : MonoBehaviour
     }
     void Movement()
     {
-        moveVelocity = new Vector3 (moveInput.x, 0f, moveInput.y);
-        controller.Move(moveVelocity * Time.deltaTime * speed);
-        Vector3 playerDirection = Vector3.right*moveInput.x+Vector3.forward*moveInput.y;
+        Vector3 playerDirection = new Vector3 (moveInput.x, 0f, moveInput.y);      
+        controller.Move(playerDirection * Time.deltaTime * speed);
         if(playerDirection.sqrMagnitude > 0.0f)
         {
             Quaternion newrotation = Quaternion.LookRotation(playerDirection,Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newrotation, controllerRotationSmoothing * Time.deltaTime);
         }
-      
-        if (isGrounded)
-        {
-            moveVelocity.y = groundedGravity; // Apply small downward force when grounded
-            Debug.DrawRay(_groundChecker.position, Vector3.down, Color.green); 
-        }
-        else
-        {
-            moveVelocity.y += gravityValue * Time.deltaTime; // Apply gravity when not grounded
-            Debug.DrawRay(_groundChecker.position, Vector3.down, Color.red);
-        }
 
+        controller.Move(moveVelocity * Time.deltaTime);
     }
 
 
     bool Grounded(){
-        float groundCheckDistance;
+
         float bufferCheckDistance = 0.1f;
 
         groundCheckDistance = (controller.height / 2) + bufferCheckDistance;
@@ -102,7 +102,10 @@ public class BomberPlayerController : MonoBehaviour
     
     void Jump()
     {
-        // Jump Logic when grounded
+        if(isGrounded){
+            Debug.Log(jumpForce * -3.0f * gravityValue);
+            moveVelocity.y += Mathf.Sqrt(jumpForce * -3.0f * gravityValue);
+        }
     }
     
     void Dash()

@@ -52,6 +52,7 @@ public class BaseBuildGameCamera : MonoBehaviour
     int multiplier = 1;
 
     void Start(){
+        gameUI.SetActive(false);
         cam = GetComponent<Camera>();
         if (cam == null)
         {
@@ -60,10 +61,11 @@ public class BaseBuildGameCamera : MonoBehaviour
         cam.orthographic = isOrthagraphic;
         StopPlacement();
     }
-    void StartPlacement(int ID){
+    public void StartPlacement(int ID){
         StopPlacement();
         currentObjectID = database.objectData.FindIndex(data => data.ID == ID);
         if(currentObjectID < 0){
+            Debug.Log($"No ID found {ID}");
             return;
         }
         GenerateVisuals();
@@ -114,51 +116,7 @@ public class BaseBuildGameCamera : MonoBehaviour
     {
         mousePosition = GetSelectedMapPosition();
         AlignToGrid();
-        Vector3 pos = transform.position;
-        if(Input.GetButtonDown("Cancel")){
-            isPaused = !isPaused;
-            Time.timeScale = isPaused ? 0 : 1;
-        }
-        if(Input.GetKey("w") || Input.mousePosition.y  >= Screen.height - panBorderThickness){
-            pos.z += panSpeed * Time.deltaTime;
-        }
-        if(Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness){
-            pos.z -= panSpeed * Time.deltaTime;
-        }
-        if(Input.GetKey("d") || Input.mousePosition.x  >= Screen.width - panBorderThickness){
-            pos.x += panSpeed * Time.deltaTime;
-        }
-        if(Input.GetKey("a") || Input.mousePosition.x  <= panBorderThickness){
-            pos.x -= panSpeed * Time.deltaTime;
-        }
-        if(Input.GetKeyDown(KeyCode.Tab)){
-            if(!inBuildMode){
-                EnterBuildMode();
-            }else{
-                ExitBuildMode();
-            }
-            gameUI.SetActive(inBuildMode);
-        }
-    
-        if(Input.GetKeyDown("r")){
-            pos = Vector3.Lerp(pos, new Vector3(0, transform.position.y, 0), 0.01f * Time.deltaTime);
-        }
-
-        if(Input.GetKeyDown("q")){
-            currentBuildID--;
-            if(currentBuildID < 0){
-                currentBuildID = buildingPrefabs.Length - 1;
-            }
-            SwapBuildings(currentBuildID);
-        }
-
-        if(Input.GetKeyDown("e")){
-            currentBuildID++;
-            if(currentBuildID > buildingPrefabs.Length - 1){
-                currentBuildID = 0;
-            }
-            SwapBuildings(currentBuildID);
-        }
+        RegisterInput();
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
@@ -174,16 +132,10 @@ public class BaseBuildGameCamera : MonoBehaviour
                 panSpeed = Mathf.Clamp(panSpeed, minZoom, maxZoom);
             }
         }
-        transform.position = pos;
+
         
         UpdateUI();
-
-        if (Input.GetMouseButtonDown(0)){
-            Build();
-        }
-        if (Input.GetMouseButtonDown(1)){
-            //UnBuild
-        }
+    
     }
 
 
@@ -209,6 +161,7 @@ public class BaseBuildGameCamera : MonoBehaviour
     
     void GenerateVisuals()
     {
+        Debug.Log("???");
         GameObject newMouse = Instantiate(prefab, mousePosition, Quaternion.identity) as GameObject;
         cursorInstance = newMouse.transform;
         GameObject newIndicatior = Instantiate(cursorMarkerPrefab, mousePosition, Quaternion.identity) as GameObject;
@@ -243,4 +196,55 @@ public class BaseBuildGameCamera : MonoBehaviour
             buildLevelCost += 50 * multiplier;
         }
     }
-}
+    void RegisterInput(){
+        Vector3 pos = transform.position;
+
+        if(Input.GetButtonDown("Cancel")){
+            isPaused = !isPaused;
+            Time.timeScale = isPaused ? 0 : 1;
+        }
+        if(Input.GetKey("w") || Input.mousePosition.y  >= Screen.height - panBorderThickness){
+            pos.z += panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness){
+            pos.z -= panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey("d") || Input.mousePosition.x  >= Screen.width - panBorderThickness){
+            pos.x += panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey("a") || Input.mousePosition.x  <= panBorderThickness){
+            pos.x -= panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKeyDown(KeyCode.Tab)){
+            if(!inBuildMode){
+                EnterBuildMode();
+            }else{
+                ExitBuildMode();
+            }
+            gameUI.SetActive(inBuildMode);
+        }
+    
+        if(Input.GetKeyDown("r")){
+            pos = Vector3.Lerp(pos, new Vector3(0, transform.position.y, 0), 0.01f * Time.deltaTime);
+        }
+
+        if(Input.GetKeyDown("q")){
+            currentBuildID--;
+            currentObjectID--;
+            if(currentBuildID < 0){
+                currentBuildID = buildingPrefabs.Length - 1;
+            }
+            SwapBuildings(currentBuildID);
+        }
+
+        if(Input.GetKeyDown("e")){
+            currentBuildID++;
+            currentObjectID++;
+            if(currentBuildID > buildingPrefabs.Length - 1){
+                currentBuildID = 0;
+            }
+            SwapBuildings(currentBuildID);
+        }
+        transform.position = pos;
+    }
+} 

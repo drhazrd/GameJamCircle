@@ -11,6 +11,7 @@ public class FPSController : MonoBehaviour
     private CharacterController characterController;
     private Camera cam;
     private Vector3 velocity;
+    private Vector2 look;
     private bool Sprint;
     private bool Jumping;
     private bool _isGrounded;
@@ -40,10 +41,18 @@ public class FPSController : MonoBehaviour
     void CameraControl(){
         float mouseX;
         float mouseY;
+        //look = playerInput.controls.CameraLook.PadLook.ReadValue<Vector2>();
+        bool isGamepad = false;
 
         if(playerInput != null){
-            mouseX = playerInput.controls.CameraLook.MouseX.ReadValue <float>() * mouseSensitivity * Time.deltaTime;
-            mouseY = playerInput.controls.CameraLook.MouseY.ReadValue <float>() * mouseSensitivity * Time.deltaTime;
+            
+            if(!isGamepad){
+                mouseX = playerInput.controls.CameraLook.MouseX.ReadValue <float>() * mouseSensitivity * Time.deltaTime;
+                mouseY = playerInput.controls.CameraLook.MouseY.ReadValue <float>() * mouseSensitivity * Time.deltaTime;
+            } else {
+                mouseX = look.x * Time.deltaTime;
+                mouseY = look.y * Time.deltaTime;
+            }
         } else {
             mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

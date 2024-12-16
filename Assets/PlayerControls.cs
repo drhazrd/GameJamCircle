@@ -381,7 +381,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""MouseX"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""5917cdbb-0f1c-4471-8816-f17ed5b1d826"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
@@ -390,12 +390,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""MouseY"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""2661a68d-fcfa-43d9-9899-c3dfd8c7258c"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PadLook"",
+                    ""type"": ""Value"",
+                    ""id"": ""8d7cde9e-8e3b-4177-9d1f-ce00bce7384a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseLook"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""8727b1ee-087e-4b95-8e9e-bbf2c844f735"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -405,7 +423,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""MouseX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -416,8 +434,30 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta/y"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""MouseY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3a6a38a-0cef-48ab-aa6b-149aefd0b92a"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse;GamePad"",
+                    ""action"": ""PadLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11c36639-783e-4de7-acaf-d3215d371759"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -722,6 +762,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_CameraLook = asset.FindActionMap("CameraLook", throwIfNotFound: true);
         m_CameraLook_MouseX = m_CameraLook.FindAction("MouseX", throwIfNotFound: true);
         m_CameraLook_MouseY = m_CameraLook.FindAction("MouseY", throwIfNotFound: true);
+        m_CameraLook_PadLook = m_CameraLook.FindAction("PadLook", throwIfNotFound: true);
+        m_CameraLook_MouseLook = m_CameraLook.FindAction("MouseLook", throwIfNotFound: true);
         // CarControls
         m_CarControls = asset.FindActionMap("CarControls", throwIfNotFound: true);
         m_CarControls_Accelerate = m_CarControls.FindAction("Accelerate", throwIfNotFound: true);
@@ -934,12 +976,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<ICameraLookActions> m_CameraLookActionsCallbackInterfaces = new List<ICameraLookActions>();
     private readonly InputAction m_CameraLook_MouseX;
     private readonly InputAction m_CameraLook_MouseY;
+    private readonly InputAction m_CameraLook_PadLook;
+    private readonly InputAction m_CameraLook_MouseLook;
     public struct CameraLookActions
     {
         private @PlayerControls m_Wrapper;
         public CameraLookActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MouseX => m_Wrapper.m_CameraLook_MouseX;
         public InputAction @MouseY => m_Wrapper.m_CameraLook_MouseY;
+        public InputAction @PadLook => m_Wrapper.m_CameraLook_PadLook;
+        public InputAction @MouseLook => m_Wrapper.m_CameraLook_MouseLook;
         public InputActionMap Get() { return m_Wrapper.m_CameraLook; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -955,6 +1001,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MouseY.started += instance.OnMouseY;
             @MouseY.performed += instance.OnMouseY;
             @MouseY.canceled += instance.OnMouseY;
+            @PadLook.started += instance.OnPadLook;
+            @PadLook.performed += instance.OnPadLook;
+            @PadLook.canceled += instance.OnPadLook;
+            @MouseLook.started += instance.OnMouseLook;
+            @MouseLook.performed += instance.OnMouseLook;
+            @MouseLook.canceled += instance.OnMouseLook;
         }
 
         private void UnregisterCallbacks(ICameraLookActions instance)
@@ -965,6 +1017,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MouseY.started -= instance.OnMouseY;
             @MouseY.performed -= instance.OnMouseY;
             @MouseY.canceled -= instance.OnMouseY;
+            @PadLook.started -= instance.OnPadLook;
+            @PadLook.performed -= instance.OnPadLook;
+            @PadLook.canceled -= instance.OnPadLook;
+            @MouseLook.started -= instance.OnMouseLook;
+            @MouseLook.performed -= instance.OnMouseLook;
+            @MouseLook.canceled -= instance.OnMouseLook;
         }
 
         public void RemoveCallbacks(ICameraLookActions instance)
@@ -1112,6 +1170,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
+        void OnPadLook(InputAction.CallbackContext context);
+        void OnMouseLook(InputAction.CallbackContext context);
     }
     public interface ICarControlsActions
     {

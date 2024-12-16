@@ -8,10 +8,14 @@ public class Pistol : Gun
     private float nextTimeToFire = 0f;
     [SerializeField] AudioClip fireSFX, reloadSFX, emptysfx;
     InputManager controls;
+<<<<<<< Updated upstream
     public bool camFX;
 
+=======
+    public GameObject muzzleFlash;
+>>>>>>> Stashed changes
 
-    void Start(){
+    public void Start(){
         isReloading = false;
         currentAmmo = maxAmmo;
         anim = GetComponent<Animator>();
@@ -42,6 +46,8 @@ public class Pistol : Gun
     void Shoot(){
         currentAmmo--;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
+        GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation);
+        flash.transform.parent = firePoint;
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
         if(camFX)CameraEffects.camEffects.Shake(.05f);

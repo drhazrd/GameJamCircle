@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/_Rendering/Textures/GrassGrad.png.meta
 guid: 23582994dc64a2c448fd8eea0f46fe26
+=======
+guid: ea86870ef3d87ee40b35295eae7e891d
+>>>>>>> Stashed changes:Assets/Art/Textures/GrassGrad.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

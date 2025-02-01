@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Water
   - Base
+  - WaveSpawner
+  - WaveObj
+  - Item
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -28,7 +32,7 @@ TagManager:
   - 
   - 
   - Animal
-  - 
+  - Gun
   - 
   - 
   - 

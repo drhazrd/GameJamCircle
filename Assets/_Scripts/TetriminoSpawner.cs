@@ -20,7 +20,8 @@ public class TetriminoSpawner : MonoBehaviour
     
     public void CreateNewTetromino()
     {
-        Instantiate(tetrominoes[Random.Range(0, tetrominoes.Length)], transform.position, Quaternion.identity);
+        int randompiece = Random.Range(0, tetrominoes.Length);
+        Instantiate(tetrominoes[randompiece], transform.position, Quaternion.identity);
         score += 10;
 
     }

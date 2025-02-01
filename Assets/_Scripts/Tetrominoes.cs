@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tetrominoes : MonoBehaviour
 {
+    public static event Action onDeleteLine;
     public Vector3 rotationpoint;
     private float previousTime;
     public float fallTime = 0.8f;
@@ -55,6 +57,7 @@ public class Tetrominoes : MonoBehaviour
             }            
         }
     }
+    
     void AddToGrid(){
         foreach (Transform children in transform)
         {
@@ -74,10 +77,12 @@ public class Tetrominoes : MonoBehaviour
         return true;
     }
     void DeleteLine(int i){
+        //Add Lines and update score
+        onDeleteLine?.Invoke();
         for (int j = 0; j < width; j++)
         {
-           Destroy(grid[j,i].gameObject);
-           grid[j,i] = null;
+            Destroy(grid[j,i].gameObject);
+            grid[j,i] = null;
         }
     }
     void RowDown(int i){

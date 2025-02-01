@@ -255,7 +255,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""bee13bd7-bb34-489e-b688-69a4c2890fce"",
                     ""expectedControlType"": ""Button"",
@@ -358,7 +358,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -756,7 +756,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Forward = m_Movement.FindAction("Forward", throwIfNotFound: true);
         m_Movement_Right = m_Movement.FindAction("Right", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
-        m_Movement_Run = m_Movement.FindAction("Run", throwIfNotFound: true);
+        m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
         // CameraLook
         m_CameraLook = asset.FindActionMap("CameraLook", throwIfNotFound: true);
@@ -899,7 +899,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Forward;
     private readonly InputAction m_Movement_Right;
     private readonly InputAction m_Movement_Jump;
-    private readonly InputAction m_Movement_Run;
+    private readonly InputAction m_Movement_Sprint;
     private readonly InputAction m_Movement_Crouch;
     public struct MovementActions
     {
@@ -908,7 +908,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Forward => m_Wrapper.m_Movement_Forward;
         public InputAction @Right => m_Wrapper.m_Movement_Right;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
-        public InputAction @Run => m_Wrapper.m_Movement_Run;
+        public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
@@ -928,9 +928,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Run.started += instance.OnRun;
-            @Run.performed += instance.OnRun;
-            @Run.canceled += instance.OnRun;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
@@ -947,9 +947,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Run.started -= instance.OnRun;
-            @Run.performed -= instance.OnRun;
-            @Run.canceled -= instance.OnRun;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
@@ -1163,7 +1163,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnForward(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
     }
     public interface ICameraLookActions

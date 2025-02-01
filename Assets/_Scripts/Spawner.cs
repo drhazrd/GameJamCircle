@@ -9,17 +9,20 @@ public class Spawner : MonoBehaviour
     public bool spawning;
     public bool singleSpawn;
     
-    void Start(){
+    void Update(){
         //if(!spawning){ StartCoroutine(SpawnProcess());}else 
-        if(singleSpawn){
+        if(!spawning){
             StartCoroutine(SpawnProcess());
         }
     }
     IEnumerator SpawnProcess(){
+        coolDown -= .3f;
         spawning = true;
         GameObject obj = Instantiate(spawned, transform.position, transform.rotation);
+        obj.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
         yield return new WaitForSeconds(coolDown);
         spawning = false;
+        Debug.Log("Spawn");
     }
     
 }

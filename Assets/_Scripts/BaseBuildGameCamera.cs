@@ -45,7 +45,7 @@ public class BaseBuildGameCamera : MonoBehaviour
 
     int buildCount;
     int buildLimit = 10;
-    public int resources;
+    public int resources, resourceLimit;
     bool inBuildMode;
     int buildLevelCost = 150;
     int buildLevel = 1;

@@ -8,12 +8,8 @@ public class Pistol : Gun
     private float nextTimeToFire = 0f;
     [SerializeField] AudioClip fireSFX, reloadSFX, emptysfx;
     InputManager controls;
-<<<<<<< Updated upstream
     public bool camFX;
 
-=======
-    public GameObject muzzleFlash;
->>>>>>> Stashed changes
 
     public void Start(){
         isReloading = false;

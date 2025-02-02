@@ -64,7 +64,6 @@ public class FPSController : MonoBehaviour
         //look = playerInput.controls.CameraLook.PadLook.ReadValue<Vector2>();
         bool isGamepad = false;
 
-<<<<<<< Updated upstream
         if(playerInput != null){
             
             if(!isGamepad){
@@ -75,15 +74,6 @@ public class FPSController : MonoBehaviour
                 mouseY = look.y * Time.deltaTime;
             }
         } else {
-=======
-        if (playerInput != null)
-        {
-            mouseX = playerInput.controls.CameraLook.MouseX.ReadValue<float>() * mouseSensitivity * Time.deltaTime;
-            mouseY = playerInput.controls.CameraLook.MouseY.ReadValue<float>() * mouseSensitivity * Time.deltaTime;
-        }
-        else
-        {
->>>>>>> Stashed changes
             mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         }

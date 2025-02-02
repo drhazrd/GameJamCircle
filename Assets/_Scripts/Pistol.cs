@@ -10,6 +10,7 @@ public class Pistol : Gun
     InputManager controls;
     public bool camFX;
 
+    public GameObject muzzleFlash { get; private set; }
 
     public void Start(){
         isReloading = false;
@@ -42,8 +43,10 @@ public class Pistol : Gun
     void Shoot(){
         currentAmmo--;
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation);
-        flash.transform.parent = firePoint;
+        if(muzzleFlash != null) {
+            GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation) as GameObject;
+            flash.transform.parent = firePoint;
+        }
         if(fireSFX != null) AudioManager.instance.PlaySFXClip(fireSFX);
         if(anim!=null)anim.SetTrigger("Fire");
         if(camFX)CameraEffects.camEffects.Shake(.05f);

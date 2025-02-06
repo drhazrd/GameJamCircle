@@ -17,6 +17,9 @@ public class VirtualPetManager : MonoBehaviour
     private int years;
     private float dayRate = 875f;
     public bool nightTime;
+    private Transform camFollowPosition;
+    public Camera cam;
+    private float cameraSmoothSpeed = .125f;
 
     private void Awake()
     {
@@ -36,7 +39,7 @@ public class VirtualPetManager : MonoBehaviour
     }
     public void UpdateUI()
     {
-        petDataText.text = $"Hunger: {currentPet.hunger} \nHealth: {currentPet.health} \nHappiness:{currentPet.happiness} \nCleanliness: {currentPet.cleanliness}";
+        petDataText.text = $"Name: {currentPet.gameObject.name} \n Hunger: {currentPet.hunger} \nHealth: {currentPet.health} \nHappiness:{currentPet.happiness} \nCleanliness: {currentPet.cleanliness}";
     }
     void Update(){
         timer += Time.deltaTime;
@@ -56,6 +59,12 @@ public class VirtualPetManager : MonoBehaviour
                 }
             }
         }
+        if (cam != null && camFollowPosition !=  null){
+            Vector3 desiredPosition = camFollowPosition.position + new Vector3(0, 0, -2f);
+            Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, desiredPosition, cameraSmoothSpeed);
+            cam.transform.position = smoothedPosition;
+            Debug.Log($"{smoothedPosition}");
+        }
 
         bool petsAvailable = pets.Count > 0;
         if(petsAvailable){
@@ -72,7 +81,8 @@ public class VirtualPetManager : MonoBehaviour
     public void UnRegisterPet(VirtualPet oldPet){
         pets.Remove(oldPet);
         if(currentPet == oldPet){
-            currentPet = pets[0] != null ? pets[0] : null;            
+            currentPet = pets[0] != null ? pets[0] : null;
+            FocusView(currentPet.transform);            
         }
     }
     public void RegisterController(VirtualCareTaker control){
@@ -89,6 +99,10 @@ public class VirtualPetManager : MonoBehaviour
             }
             currentPet = pets[petID];
         }
+        FocusView(currentPet.transform);
+    }
+    public void FocusView(Transform focusPosition){
+        camFollowPosition = focusPosition;
     }
     
 }

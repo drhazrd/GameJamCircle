@@ -20,8 +20,10 @@ public class VirtualCareTaker : MonoBehaviour
     }
     public void SelectNextPet(){
         //Select the Next Available Pet
+        manager.ChangeSelectedPet(1);
     }
     public void SelectPreviousPet(){
         //Select the Previous or last Available Pet
+        manager.ChangeSelectedPet(-1);
     }
 }

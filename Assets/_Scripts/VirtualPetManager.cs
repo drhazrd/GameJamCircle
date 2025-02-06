@@ -63,7 +63,6 @@ public class VirtualPetManager : MonoBehaviour
             Vector3 desiredPosition = camFollowPosition.position + new Vector3(0, 0, -2f);
             Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, desiredPosition, cameraSmoothSpeed);
             cam.transform.position = smoothedPosition;
-            Debug.Log($"{smoothedPosition}");
         }
 
         bool petsAvailable = pets.Count > 0;

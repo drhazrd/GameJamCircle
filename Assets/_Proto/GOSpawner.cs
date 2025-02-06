@@ -43,6 +43,5 @@ public class GOSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(coolDown);
         spawning = false;
-        Debug.Log($"Spawn {randomPetType}");
     }
 }

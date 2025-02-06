@@ -23,12 +23,6 @@ public class GameManager : MonoBehaviour
     {
         StartGame();
     }
-    void OnEnable(){
-        PlayMove2DLicht.onPlayerSpawn += PlayerSetup;
-    }
-    void OnDisable(){
-        PlayMove2DLicht.onPlayerSpawn -= PlayerSetup;
-    }
     void PlayerSetup(Transform transform) {
         player = transform;
     }

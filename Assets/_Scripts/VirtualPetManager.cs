@@ -7,6 +7,7 @@ public class VirtualPetManager : MonoBehaviour
 {
     public static VirtualPetManager petManager;
     List<VirtualPet> pets = new List<VirtualPet>();
+    public List<VirtualPetStatBar> statBars;
     public VirtualPet currentPet {get; private set;}
     VirtualCareTaker careTakerController;
     public GameObject petDataContainer;
@@ -20,13 +21,15 @@ public class VirtualPetManager : MonoBehaviour
     private Transform camFollowPosition;
     public Camera cam;
     private float cameraSmoothSpeed = .125f;
+    public AudioClip swapSFX, registerPetSFX;
+    private bool statsAvailable;
+    public AudioClip buttonSFX;
 
     private void Awake()
     {
         if (petManager == null)
         {
             petManager = this;
-            DontDestroyOnLoad(gameObject); 
         }
         else
         {
@@ -39,9 +42,11 @@ public class VirtualPetManager : MonoBehaviour
     }
     public void UpdateUI()
     {
-        petDataText.text = $"Name: {currentPet.gameObject.name} \n Hunger: {currentPet.hunger} \nHealth: {currentPet.health} \nHappiness:{currentPet.happiness} \nCleanliness: {currentPet.cleanliness}";
+        petDataText.text = $"Name: {currentPet.gameObject.name} | Age {currentPet.age}";
     }
     void Update(){
+        statsAvailable = currentPet != null;
+        UpdateStatBars();
         timer += Time.deltaTime;
         if(timer == dayRate / 2){
             nightTime = true;
@@ -71,10 +76,34 @@ public class VirtualPetManager : MonoBehaviour
         } 
         if(petDataContainer != null) petDataContainer.SetActive(petsAvailable);
     }
+    void UpdateStatBars(){
+        if (statsAvailable)
+        {
+            statBars[0].UpdateBar(currentPet.hunger, currentPet.maxHunger);
+            statBars[1].UpdateBar(currentPet.health, currentPet.maxHealth);
+            statBars[2].UpdateBar(currentPet.happiness, currentPet.maxHappiness);
+            statBars[3].UpdateBar(currentPet.cleanliness, currentPet.maxCleanliness);
+        }
+    }
+    void InitializeStatBars()
+    {
+        if (statBars.Count >= 4)
+        {
+            statBars[0].statName.text = "Hunger";
+            statBars[0].statBarImage.color = Color.yellow;
+            statBars[1].statName.text = "Health";
+            statBars[1].statBarImage.color = Color.green;
+            statBars[2].statName.text = "Happiness";
+            statBars[2].statBarImage.color = Color.magenta;
+            statBars[3].statName.text = "Cleanliness";
+            statBars[3].statBarImage.color = Color.cyan;
+        }
+    }
     public void RegisterPet(VirtualPet newPet){
         pets.Add(newPet);
         if(currentPet == null){
             currentPet = newPet;
+            InitializeStatBars();
         }
     }
     public void UnRegisterPet(VirtualPet oldPet){
@@ -99,9 +128,12 @@ public class VirtualPetManager : MonoBehaviour
             currentPet = pets[petID];
         }
         FocusView(currentPet.transform);
+        InitializeStatBars();
     }
     public void FocusView(Transform focusPosition){
         camFollowPosition = focusPosition;
     }
-    
+    public void ButtonSound(){
+        AudioManager.instance.PlaySFXClip(buttonSFX);
+    }
 }

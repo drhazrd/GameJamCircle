@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMoverTDS : MonoBehaviour
 {
@@ -14,65 +15,81 @@ public class PlayerMoverTDS : MonoBehaviour
     Vector2 movement;
     Vector2 aimPosition;
 
-    [SerializeField]bool gamePad;
-    [SerializeField]bool dashActive;
-    
-    void Start()
+    [SerializeField] bool gamePad;
+    [SerializeField] bool dashActive;
+    PlayerControls controls;
+
+    private void OnEnable()
     {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+    
+    void Awake()
+    {
+        controls = new PlayerControls();
+
+        controls.Player.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
+        controls.Player.Aim.performed += ctx => aimPosition = ctx.ReadValue<Vector2>();
+        controls.Player.Fire.performed += ctx => {
+            if (weapon != null) weapon.Fire();
+        };
+        controls.Player.Jump.performed += ctx => {
+            if (!dashActive) Dash();
+        };
+
         rb = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<SlingShot>();
     }
 
     void Update()
     {
-        ProcessInputs();
-        if(Input.GetButtonDown("Jump")){
-            if(!dashActive) Dash(); else return;
-        }
-        if(Input.GetButtonDown("Fire1")){
-            if(weapon!=null) weapon.Fire(); else return;
-        }
-    }
-    void FixedUpdate()
-    {
-        Move();
-    }
-
-    void ProcessInputs()
-    {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        movement = new Vector2(moveX, moveY).normalized;
-
-        if (Mathf.Abs(moveX) > 0.01f || Mathf.Abs(moveY) > 0.01f)
+        if (Mathf.Abs(movement.x) > 0.01f || Mathf.Abs(movement.y) > 0.01f)
         {
             gamePad = false;
-            aimPosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
+            aimPosition = sceneCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
         else
         {
             gamePad = true;
-            aimPosition = new Vector2(Input.GetAxisRaw("GamepadHorizontal"), Input.GetAxisRaw("GamepadVertical"));
+            aimPosition = movement;
         }
     }
-    void Dash(){
+    
+    void FixedUpdate()
+    {
+        Move();
+    }
+    
+    void Dash()
+    {
         dashActive = true;
         StartCoroutine(DashTime());
     }
-    IEnumerator DashTime(){
-        speed *=2;
-        yield return new WaitForSeconds(.3f);
-        speed /=2;
+
+    IEnumerator DashTime()
+    {
+        speed *= 2;
+        yield return new WaitForSeconds(0.3f);
+        speed /= 2;
         yield return new WaitForSeconds(2f);
         dashActive = false;
     }
-    void Move(){
-        rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
+    
+    void Move()
+    {
+        rb.velocity = movement * speed;
         Aim();
     }
+    
     void Aim()
     {
-        if(!gamePad){
+        if (!gamePad)
+        {
             Vector2 aimDirection = aimPosition - rb.position;
             float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
             aimObj.transform.rotation = Quaternion.Euler(0, 0, aimAngle);

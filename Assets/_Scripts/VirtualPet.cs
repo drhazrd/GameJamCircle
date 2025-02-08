@@ -8,7 +8,10 @@ using UnityEngine.Profiling;
 public class VirtualPet : MonoBehaviour
 {
     public int hunger, health, happiness, cleanliness;
-    int maxHunger = 100, maxHealth = 100, maxHappiness = 100, maxCleanliness = 100;
+    public int maxHunger {get; private set;}
+    public int maxHealth {get; private set;}
+    public int maxHappiness {get; private set;}
+    public int maxCleanliness {get; private set;}
     public float speed, range, maxDistance;
     Vector2 wayPoint;
     public bool alive {get; private set;}
@@ -16,11 +19,14 @@ public class VirtualPet : MonoBehaviour
     public bool sleep {get; private set;}
     public bool dirty {get; private set;}
     float resetTimer;
-    int age, maxAge;
+    public int age, maxAge;
     float hungerTimer, playTimer;
     public PetType type;
     public string [] petNames= {"Owliver", "Blueberry","Lenny", "Penny", "Jenny", "Zach"};
     VirtualPetManager petKeeper;
+    public AudioClip feedSFX, playSFX, cleanSFX;
+    public GameObject deathVFX;
+    public VirtualPetStatBar LifeGuage; 
 
     public void PetInit(PetType petClass)
     {
@@ -49,6 +55,7 @@ public class VirtualPet : MonoBehaviour
         type = petClass;
         int i;
         this.gameObject.name = petNames[i = UnityEngine.Random.Range(0,petNames.Length - 1)];
+        LifeGuage = GetComponentInChildren<VirtualPetStatBar>();
         GetComponentInChildren<VirtualGraphicsAssistant>().AssignPetGraphics(type);
         SetDestination();
     }
@@ -71,11 +78,11 @@ public class VirtualPet : MonoBehaviour
         if(hungerTimer >= 3f){
             hungerTimer = 0;
             // Simulate hunger over time
-            if(hunger > 0) hunger -= 1;
+            hunger -= 1;
             
             if (hunger <= 0) {
                 hunger = 0;
-            } else
+            }
             // Decrease health if hunger is low
             if (hunger < 20){
                 health -= 1;
@@ -84,6 +91,10 @@ public class VirtualPet : MonoBehaviour
                     return;
                 }
             }
+            if(playTimer >= 20f){
+                playTimer = 0;
+                happiness /= 2; 
+            }
         }
         if(petKeeper.nightTime){
             if(hunger < 80){
@@ -91,30 +102,28 @@ public class VirtualPet : MonoBehaviour
             } 
         }
         WanderMovement();
+        if(LifeGuage != null) LifeGuage.UpdateBar(health, maxHealth);
 
     }
-
     private void Dead()
     {
         health = 0;
         StartCoroutine(Die());
     }
-
     IEnumerator Die()
     {
-        yield return new WaitForSeconds(.1f);
-        // Death Animation
-        // Garbage Collection
         Debug.Log($"The {type} of pet died");
+        yield return new WaitForSeconds(.1f);
+        Destroy(gameObject);
+        Instantiate(deathVFX, transform.position, transform.rotation);
+        VirtualPetManager.petManager.ButtonSound();
     }
-
     public void Feed()
     {
         hunger += 15;
         if (hunger > 100) hunger = 100;
         cleanliness -= 5;
     }
-
     public void Play()
     {
         happiness += 6;
@@ -122,7 +131,6 @@ public class VirtualPet : MonoBehaviour
         cleanliness -= 15; // Playing decreases cleanliness a bit
         playTimer = 0;
     }
-
     public void RestClean()
     {
         health += 20;
@@ -153,7 +161,6 @@ public class VirtualPet : MonoBehaviour
             SetDestination();
         }
     }
-
 }
 
 public enum PetType {

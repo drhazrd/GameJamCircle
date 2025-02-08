@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Codice.ThemeImages;
 using UnityEngine;
 
 public class MobUnit : MonoBehaviour

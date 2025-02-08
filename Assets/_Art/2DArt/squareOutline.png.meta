@@ -106,6 +106,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -136,7 +149,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 760
-        width: 278
+        width: 276
         height: 169
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -155,10 +168,10 @@ TextureImporter:
       name: squareOutline_2
       rect:
         serializedVersion: 2
-        x: 281
-        y: 759
-        width: 158
-        height: 170
+        x: 276
+        y: 760
+        width: 168
+        height: 169
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,11 +253,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 352
-        width: 173
-        height: 135
+        y: 351
+        width: 174
+        height: 136
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,7 +278,7 @@ TextureImporter:
         width: 136
         height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,6 +286,90 @@ TextureImporter:
       bones: []
       spriteID: 4a2a074616f0d554f93600fd833158db
       internalID: 1861345518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squareOutline_8
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 169
+        width: 135
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a43e6f564228e141ad1d66778706cb5
+      internalID: -382442482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squareOutline_9
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 215
+        width: 136
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa5d2839fb32cb468d3a6a2246c16a3
+      internalID: 196214572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squareOutline_10
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 33
+        width: 136
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a81066113ef93845885be58618f95e8
+      internalID: 1887627284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: squareOutline_11
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 793
+        width: 136
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83ba04daee9cef841b26a3d6f4709252
+      internalID: -367032564
       vertices: []
       indices: 
       edges: []
@@ -290,12 +387,16 @@ TextureImporter:
     nameFileIdTable:
       squareOutline_0: -1387018010
       squareOutline_1: -1143609023
+      squareOutline_10: 1887627284
+      squareOutline_11: -367032564
       squareOutline_2: -1170583009
       squareOutline_3: 1140322669
       squareOutline_4: -1230531817
       squareOutline_5: 538344436
       squareOutline_6: -2145289710
       squareOutline_7: 1861345518
+      squareOutline_8: -382442482
+      squareOutline_9: 196214572
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

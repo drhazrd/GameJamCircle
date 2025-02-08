@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
     public AudioMixer aMixer;
-    public AudioClip gameMusic;
+    public AudioClip gameMusic, buttonSFX;
 
     public AudioSource sourceSFX;
     public AudioSource sourceBGM;
@@ -21,13 +22,14 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
-        if(gameMusic != null) PlayBGM(gameMusic);
+        if(gameMusic != null) PlayBGM(gameMusic); else Debug.Log("Music Not Started/Found");
     }
 
 
     public void PlayBGM(AudioClip clip)
     {
         sourceBGM.clip = clip;
+        sourceBGM.Play();
     }
     public void PlaySFXClip(AudioClip clip)
     {

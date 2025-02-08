@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +13,11 @@ public class GameManager : MonoBehaviour
     Transform player;
     public static event Action<GameState> OnGameStateChanged;
     bool paused;
-    PlayerControls controls;
     void Awake()
     {
         Instance = this;
     }
+    
     void Start()
     {
         StartGame();
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
        switch(newState)
        {
         case GameState.Play:
-            Cursor.visible = false;
+            //Cursor.visible = false;
             break;  
         case GameState.Pause:
             Cursor.visible = true;
@@ -106,10 +105,24 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("Reloading Level");
         Time.timeScale = 1f;
         yield return new WaitForSeconds(1f);
-
+        ReloadScene();
+    }
+    void ReloadScene(){
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
         Debug.LogWarning($"Reloading {scene} Level");
+    }
+    public void LoadScene(int sceneIndex){
+        SceneManager.LoadScene(sceneIndex);
+        Debug.Log($"Loading Level...");
+    }
+    public void Quit()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
    
 }

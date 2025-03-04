@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     Transform player;
     public static event Action<GameState> OnGameStateChanged;
     bool paused;
+    public float gameTime{get; private set;}
+
     void Awake()
     {
         Instance = this;
@@ -124,11 +126,17 @@ public class GameManager : MonoBehaviour
         Application.Quit();
         #endif
     }
-   
+    void Update()
+    {
+        if(state == GameState.Play){
+            gameTime += Time.deltaTime;
+        }
+    }
 }
  public enum GameState {
         Default, 
-        Play, 
+        Play,
+        Message, 
         Pause, 
         Lose, 
         Win

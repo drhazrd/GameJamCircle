@@ -15,6 +15,7 @@ public class BubbleMiniGameManager : MonoBehaviour
     public GameObject bubbleObj;
     public Transform bubbleSpawnLocation;
     PlayerControls controls;
+    public GameObject paddle;
 
     void OnDisable(){
         BubbleMiniGameBubble.onBubblePop -= BubblePop;
@@ -56,6 +57,11 @@ public class BubbleMiniGameManager : MonoBehaviour
         if(scoreText != null){
             scoreText.text = $"{score}";
         }
+        Vector2 v = Mouse.current.position.ReadValue();
+        if(paddle != null){
+            paddle.transform.position = v;
+        }
+        Debug.Log(v);
     }
 
     private void MakeBubble()

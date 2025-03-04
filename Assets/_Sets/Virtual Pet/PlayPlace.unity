@@ -4384,7 +4384,7 @@ MonoBehaviour:
   coolDown: 30
   spawning: 0
   singleSpawn: 0
-  maxCount: 8
+  maxCount: 1
 --- !u!1 &1982515150
 GameObject:
   m_ObjectHideFlags: 0

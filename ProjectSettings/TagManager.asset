@@ -10,6 +10,8 @@ TagManager:
   - WaveObj
   - Item
   - Enemy
+  - CanBoom
+  - NPC
   layers:
   - Default
   - TransparentFX

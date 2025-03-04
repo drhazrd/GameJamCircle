@@ -13,7 +13,7 @@ public class CarGameManager : MonoBehaviour
     [SerializeField]public GameState state;
     Transform player;
     public static event Action<GameState> OnGameStateChanged;
-    bool paused;
+    public bool paused{get; private set;}
     PlayerControls controls;
     void Awake()
     {
@@ -117,7 +117,11 @@ public class CarGameManager : MonoBehaviour
         SceneManager.LoadScene(scene.buildIndex);
         Debug.LogWarning($"Reloading {scene} Level");
     }
-   
+
+    public static implicit operator CarGameManager(BombCopGameManager v)
+    {
+        throw new NotImplementedException();
+    }
 }
  public enum RaceState {
         Default, 

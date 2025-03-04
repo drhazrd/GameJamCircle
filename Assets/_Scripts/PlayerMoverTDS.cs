@@ -17,6 +17,7 @@ public class PlayerMoverTDS : MonoBehaviour
 
     [SerializeField] bool gamePad;
     [SerializeField] bool dashActive;
+    [SerializeField] bool moveEnabled;
     PlayerControls controls;
 
     private void OnEnable()
@@ -34,11 +35,13 @@ public class PlayerMoverTDS : MonoBehaviour
         controls = new PlayerControls();
 
         controls.Player.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
+        controls.Player.Move.canceled += ctx => movement = ctx.ReadValue<Vector2>();
+        controls.Player.Aim.canceled += ctx => aimPosition = ctx.ReadValue<Vector2>();
         controls.Player.Aim.performed += ctx => aimPosition = ctx.ReadValue<Vector2>();
         controls.Player.Fire.performed += ctx => {
             if (weapon != null) weapon.Fire();
         };
-        controls.Player.Jump.performed += ctx => {
+        controls.Player.Action.performed += ctx => {
             if (!dashActive) Dash();
         };
 
@@ -48,7 +51,8 @@ public class PlayerMoverTDS : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(movement.x) > 0.01f || Mathf.Abs(movement.y) > 0.01f)
+        bool aiming = Mathf.Abs(aimPosition.x) > 0.01f || Mathf.Abs(aimPosition.y) > 0.01f;
+        if (aiming)
         {
             gamePad = false;
             aimPosition = sceneCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -62,7 +66,7 @@ public class PlayerMoverTDS : MonoBehaviour
     
     void FixedUpdate()
     {
-        Move();
+        if(moveEnabled) Move();
     }
     
     void Dash()

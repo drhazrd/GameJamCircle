@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,17 +11,34 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
     private bool isMoving;
+    private bool isSprinting;
     private float playerSpeed = 2.0f;
     private float walkSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
     private float groundedGravity = -0.1f;
+    Vector2 moveInput;
+    PlayerControls playerControls;
 
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         _anim = GetComponentInChildren<Animator>();
+        playerControls.Player.Jump.performed += ctx => Jump();
+        playerControls.Player.Jump.canceled += ctx => Jump();
+        playerControls.Player.Action.performed += ctx => Sprint();
     }
+    void OnEnable(){
+        playerControls.Enable();
+    }
+    void OnDisable(){
+        playerControls.Disable();
+    }
+
 
     void FixedUpdate(){
         Movement();
@@ -28,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Grounded();
-
+        isMoving = moveInput != Vector2.zero;
         if (isGrounded)
         {
             playerVelocity.y = groundedGravity; // Apply small downward force when grounded
@@ -37,38 +56,38 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y += gravityValue * Time.deltaTime; // Apply gravity when not grounded
         }
-
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        HandleInput();
+        AnimationHandling();
+    }
+    void Movement(){
+        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+        if(move != Vector3.zero){
+            transform.forward = move;
+        }
+        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
+    void Jump(){
+        Debug.Log("jump");
+        if (isGrounded)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
-        if (Input.GetButtonDown("Sprint") && isGrounded)
+    }
+    void AnimationHandling(){
+        _anim.SetBool("Sprint", isSprinting);
+        _anim.SetBool("isRunning", isMoving);
+    }
+    void Sprint(){
+        Debug.Log("sprint");
+        isSprinting = !isSprinting;
+        if (isGrounded && isSprinting)
         {
-            _anim.SetBool("Sprint", true);
             playerSpeed = walkSpeed * 2f;
 
-        }else{
+        }else if (isGrounded){
             playerSpeed = walkSpeed;
-            _anim.SetBool("Sprint", false);
         } 
-
-
-        //if(!isGrounded) playerVelocity.y += gravityValue * Time.deltaTime;
-    }
-    void Movement(){
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
-        {
-            transform.forward = move;
-            _anim.SetBool("isRunning", true);
-        }
-        else{
-            _anim.SetBool("isRunning", false);
-        }
-        controller.Move(playerVelocity * Time.deltaTime);
     }
     bool Grounded(){
         float groundCheckDistance;
@@ -81,5 +100,8 @@ public class PlayerMovement : MonoBehaviour
             return true;
         } else 
         return false;
+    }
+    void HandleInput(){
+        moveInput = playerControls.Player.Move.ReadValue<Vector2>();
     }
 }

@@ -80,6 +80,69 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""aaf9081b-9cc6-48c7-931c-4dd0fe3db41a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""aac77878-caaf-4e9c-94f8-7d0456c3816b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Detonate"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d5e0257-03dd-47fe-aa31-b2d71c8b5df4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""831b07ba-1deb-4893-8d55-749865bd2da6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClassUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ede73c3-a088-4dab-9329-851931a2dfce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClassDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bda1f85-ab9d-425a-940a-cae081dfa8ca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ItemPrevious"",
+                    ""type"": ""Button"",
+                    ""id"": ""21846e51-5d7c-4035-81b5-fe64368af226"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -258,6 +321,160 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b2dfe0b-d4bf-4017-9fd3-0cce812b6a0d"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7e11735-6d14-4d64-87d8-48d1a36eb6ab"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd81e4cb-d027-46b4-80e1-defa024058c9"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""515fa9db-ceaf-45b8-a1e5-4af152d9cbe2"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d48ca82-3ba1-4f48-8a4e-156a023a1178"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Detonate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cf5867a-3e22-4923-82f2-5e61cb6c1a57"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Detonate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43f4a3d4-4bb0-46f6-8f33-7f6308a9be3b"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bc7cda3-3249-450d-9f71-ec7c2a561c0b"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0697a541-cbab-4e21-8cb9-8395f72e0fce"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClassUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73945065-ec00-4d4d-9bda-0d809410a3d8"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClassUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8c438b6-f98c-4fb6-9420-03cee42395c6"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClassDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18027a60-cced-4292-8ecc-f1ec17282fe0"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClassDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccebe223-b16a-49bc-8632-f00c311126ce"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemPrevious"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3fd7798-5b59-4e91-884e-249179ef4314"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemPrevious"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -339,6 +556,13 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        m_Player_Detonate = m_Player.FindAction("Detonate", throwIfNotFound: true);
+        m_Player_ItemForward = m_Player.FindAction("ItemForward", throwIfNotFound: true);
+        m_Player_ClassUp = m_Player.FindAction("ClassUp", throwIfNotFound: true);
+        m_Player_ClassDown = m_Player.FindAction("ClassDown", throwIfNotFound: true);
+        m_Player_ItemPrevious = m_Player.FindAction("ItemPrevious", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -412,6 +636,13 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Action;
     private readonly InputAction m_Player_Use;
+    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Menu;
+    private readonly InputAction m_Player_Detonate;
+    private readonly InputAction m_Player_ItemForward;
+    private readonly InputAction m_Player_ClassUp;
+    private readonly InputAction m_Player_ClassDown;
+    private readonly InputAction m_Player_ItemPrevious;
     public struct PlayerActions
     {
         private @TestControls m_Wrapper;
@@ -422,6 +653,13 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputAction @Use => m_Wrapper.m_Player_Use;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Menu => m_Wrapper.m_Player_Menu;
+        public InputAction @Detonate => m_Wrapper.m_Player_Detonate;
+        public InputAction @ItemForward => m_Wrapper.m_Player_ItemForward;
+        public InputAction @ClassUp => m_Wrapper.m_Player_ClassUp;
+        public InputAction @ClassDown => m_Wrapper.m_Player_ClassDown;
+        public InputAction @ItemPrevious => m_Wrapper.m_Player_ItemPrevious;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -449,6 +687,27 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
+            @Detonate.started += instance.OnDetonate;
+            @Detonate.performed += instance.OnDetonate;
+            @Detonate.canceled += instance.OnDetonate;
+            @ItemForward.started += instance.OnItemForward;
+            @ItemForward.performed += instance.OnItemForward;
+            @ItemForward.canceled += instance.OnItemForward;
+            @ClassUp.started += instance.OnClassUp;
+            @ClassUp.performed += instance.OnClassUp;
+            @ClassUp.canceled += instance.OnClassUp;
+            @ClassDown.started += instance.OnClassDown;
+            @ClassDown.performed += instance.OnClassDown;
+            @ClassDown.canceled += instance.OnClassDown;
+            @ItemPrevious.started += instance.OnItemPrevious;
+            @ItemPrevious.performed += instance.OnItemPrevious;
+            @ItemPrevious.canceled += instance.OnItemPrevious;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -471,6 +730,27 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
+            @Detonate.started -= instance.OnDetonate;
+            @Detonate.performed -= instance.OnDetonate;
+            @Detonate.canceled -= instance.OnDetonate;
+            @ItemForward.started -= instance.OnItemForward;
+            @ItemForward.performed -= instance.OnItemForward;
+            @ItemForward.canceled -= instance.OnItemForward;
+            @ClassUp.started -= instance.OnClassUp;
+            @ClassUp.performed -= instance.OnClassUp;
+            @ClassUp.canceled -= instance.OnClassUp;
+            @ClassDown.started -= instance.OnClassDown;
+            @ClassDown.performed -= instance.OnClassDown;
+            @ClassDown.canceled -= instance.OnClassDown;
+            @ItemPrevious.started -= instance.OnItemPrevious;
+            @ItemPrevious.performed -= instance.OnItemPrevious;
+            @ItemPrevious.canceled -= instance.OnItemPrevious;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -606,6 +886,13 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
+        void OnDetonate(InputAction.CallbackContext context);
+        void OnItemForward(InputAction.CallbackContext context);
+        void OnClassUp(InputAction.CallbackContext context);
+        void OnClassDown(InputAction.CallbackContext context);
+        void OnItemPrevious(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

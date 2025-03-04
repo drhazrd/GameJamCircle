@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Sets/Virtual Pet/VirtualPetBoot.unity
-    guid: 2c7f7178a2b387044ab4d448440b0877
+    path: Assets/_Sets/Noah/Main Meniu.unity
+    guid: 7d4408786575cc442bedb25f11c62861
   - enabled: 1
-    path: Assets/_Sets/Virtual Pet/PlayPlace.unity
-    guid: 27ebc45f1a5674a469efddce53281481
-  - enabled: 1
-    path: Assets/_Sets/Virtual Pet/BubblePopMiniGame.unity
-    guid: 5721368be49e11f4ea80e2f656ff5918
+    path: Assets/_Sets/Noah/Mingle.unity
+    guid: caa7fb416d2067d46a142f1071938920
   m_configObjects: {}

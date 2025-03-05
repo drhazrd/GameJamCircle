@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class Damageable : MonoBehaviour
     public int health = 3;
     public GameObject deathVFX;
     public AudioClip deathSFX;
-
+    private float deathDelay = .3f;
 
     public void TakeDamage(int damage){
 
@@ -19,6 +20,8 @@ public class Damageable : MonoBehaviour
     void Die(){
         if(deathSFX != null) AudioManager.instance.PlaySFXClip(deathSFX);
         if(deathVFX != null) Instantiate(deathVFX, transform.position, transform.rotation);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, deathDelay);
     }
+
+    
 }

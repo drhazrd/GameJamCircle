@@ -20,7 +20,8 @@ public class BombInventoryController : MonoBehaviour
     bool detonatorReady;
     List <BombController> listOfRemoteDetonation = new List<BombController>();
     List <BombController> listOfLinkDetonation = new List<BombController>();
-    
+    private float linkDetonateDelay = 1f;
+
     void OnEnable()
     {
         BomberPlayerController.onDetonateAllBombs += ClearList;
@@ -118,8 +119,22 @@ public class BombInventoryController : MonoBehaviour
     }
     void ClearList(){
         listOfRemoteDetonation.Clear();
+        
+        if(listOfLinkDetonation.Count > 0){
+            StartCoroutine(ClearLink());
+        }
+    }
+
+    IEnumerator ClearLink()
+    {
+        for (int i = 0; i < listOfLinkDetonation.Count; i++)
+        {
+            listOfLinkDetonation[i].LinkDetonate();
+            yield return new WaitForSeconds(linkDetonateDelay);
+        }
         listOfLinkDetonation.Clear();
     }
+
     public void ClearStack(BombController bomb){
         Debug.Log("Clear Stack!");
         if(stackTarget == bomb) SetStackTarget(null);

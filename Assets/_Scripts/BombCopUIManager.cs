@@ -48,7 +48,7 @@ public class BombCopUIManager : MonoBehaviour
     private void UpdateTimerUI()
     {
         timerTime = BombCopGameManager.Instance.gameTime;
-        timerText.text = timerTime.ToString("00:00");
+        timerText.text = timerTime.ToString("00");
     }
 
     public void Pause(){

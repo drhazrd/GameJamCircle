@@ -48,6 +48,7 @@ public class DialogueManager : MonoBehaviour
         dialogueHolder.SetActive(dialogueActive);
         BombCopGameManager.Instance.PlayerFreeze();
         StartCoroutine(TypeLine());
+        BombCopUIManager.ui.HUDHide();
     }
     IEnumerator TypeLine(){
         foreach (char c in lines[index].ToCharArray())
@@ -70,6 +71,7 @@ public class DialogueManager : MonoBehaviour
             dialogueActive = false;
             BombCopGameManager.Instance.PlayerFreeze();
             dialogueHolder.SetActive(dialogueActive);
+            BombCopUIManager.ui.HUDDisplay();
         }
     }
     public void PlayerContuine(){

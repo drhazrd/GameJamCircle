@@ -8,6 +8,8 @@ public class AnimationFX : MonoBehaviour
     Animator m_animator;
     BomberPlayerController bombPlayer;
     public bool alternate;
+    public bool isSprinting;
+    public bool isMoving;
 
     void Awake()
     {
@@ -16,8 +18,13 @@ public class AnimationFX : MonoBehaviour
     }
     void Update()
     {
-        m_animator.SetBool("Sprint", bombPlayer.isSprinting);
-        m_animator.SetBool("isRunning", bombPlayer.isMoving);
+        if(bombPlayer != null){
+            m_animator.SetBool("Sprint", bombPlayer.isSprinting);
+            m_animator.SetBool("isRunning", bombPlayer.isMoving);
+        } else{
+            m_animator.SetBool("Sprint", isSprinting);
+            m_animator.SetBool("isRunning", isMoving);
+        }
 
     }
 

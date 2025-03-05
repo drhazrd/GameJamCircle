@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     Transform player;
     public static event Action<GameState> OnGameStateChanged;
     bool paused;
+    public bool canMove;
+
     public float gameTime{get; private set;}
 
     void Awake()

@@ -103,6 +103,13 @@ public class BombController : MonoBehaviour
             return;
         }
     }
+    public void LinkDetonate(){
+        if(isLink){
+            StartCoroutine(Explode());
+            hasExploded = true;
+            return;
+        }
+    }
     IEnumerator Explode()
     {
         yield return new WaitForSeconds(.05f);
@@ -119,6 +126,7 @@ public class BombController : MonoBehaviour
                 }
                 if(player){
                     Debug.Log("Player Explode Up");
+                    rb.gameObject.GetComponent<BomberPlayerController>().BombJump(damage);
                 }
                 rb.AddExplosionForce(force, transform.position, radius);
             }
@@ -167,15 +175,14 @@ public class BombController : MonoBehaviour
             break;
             
             default:
-                Debug.Log("Unknown detonator type.");
-                break;
+            Debug.Log("Unknown detonator type.");
+            break;
         }
 
     }
 }
 public enum DetonatorType{
     Fuse,
-    Timer,
     Remote,
     Link,
     Proximity

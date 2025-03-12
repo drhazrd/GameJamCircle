@@ -78,7 +78,16 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
                     ""id"": ""1c2f6ac4-8d04-4f35-a56f-4a7810630364"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7599ece-2c60-42c6-9061-d39310da2bc4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -475,6 +484,28 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
                     ""action"": ""ItemPrevious"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06f4ca68-eb7c-467c-8bd4-d1c779a3701a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""UseHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50d98750-0081-4830-8b78-5a7f3899982e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""UseHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -556,6 +587,7 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+        m_Player_UseHold = m_Player.FindAction("UseHold", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_Detonate = m_Player.FindAction("Detonate", throwIfNotFound: true);
@@ -636,6 +668,7 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Action;
     private readonly InputAction m_Player_Use;
+    private readonly InputAction m_Player_UseHold;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_Detonate;
@@ -653,6 +686,7 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputAction @Use => m_Wrapper.m_Player_Use;
+        public InputAction @UseHold => m_Wrapper.m_Player_UseHold;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @Detonate => m_Wrapper.m_Player_Detonate;
@@ -687,6 +721,9 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
+            @UseHold.started += instance.OnUseHold;
+            @UseHold.performed += instance.OnUseHold;
+            @UseHold.canceled += instance.OnUseHold;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
@@ -730,6 +767,9 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
+            @UseHold.started -= instance.OnUseHold;
+            @UseHold.performed -= instance.OnUseHold;
+            @UseHold.canceled -= instance.OnUseHold;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
@@ -886,6 +926,7 @@ public partial class @TestControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnUseHold(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnDetonate(InputAction.CallbackContext context);

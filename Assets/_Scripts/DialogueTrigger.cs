@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,11 +17,21 @@ public class DialogueTrigger : MonoBehaviour
     private GameObject interactIcon;
     private GameObject _model;
     string interactText;
+    public GameInfo.JobTypeNPC job;
     public string[] lines;
-    private object npcName;
+    private string npcName;
 
     void Awake () {
         playerControls = new TestControls();
+        switch(job){
+            case GameInfo.JobTypeNPC.PoliceOfficers:
+            npcName = GameInfo.policeOfficers[UnityEngine.Random.Range(0, GameInfo.policeOfficers.Length - 1)];
+            break;
+            default:
+            npcName = GameInfo.scienceMonkeys[UnityEngine.Random.Range(0, GameInfo.policeOfficers.Length - 1)];
+            break;
+        }
+        this.gameObject.name = npcName;
     }
     void OnEnable(){
 		playerControls.Enable();
@@ -62,7 +73,6 @@ public class DialogueTrigger : MonoBehaviour
             player.GetComponent<BomberPlayerController>().FaceDirection(transform.position);
             if (!dialogueManager.dialogueActive)
             {
-                string npcName = this.gameObject.name;
                 if(lines != null) dialogueManager.StartMessage(lines, npcName, null);
             }
             else if (dialogueManager.dialogueActive)

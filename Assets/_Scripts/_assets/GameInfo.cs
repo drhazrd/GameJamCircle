@@ -1,7 +1,7 @@
 public class GameInfo{
 
 
-    public enum JobType
+    public enum JobTypeNPC
     {
         Citizens,
         Musicians,
@@ -15,7 +15,7 @@ public class GameInfo{
         Criminals
     }
 
-    public string[] policeOfficers = {
+    public static string[] policeOfficers = {
         "Officer Chimp Chase",
         "Detective Bananasworth",
         "Sergeant Swinglow",
@@ -28,7 +28,7 @@ public class GameInfo{
         "Constable Gibby Grime"
     };
 
-    public string[] citizens = {
+    public static string[] citizens = {
         "Mona McSwinger",
         "Barry Bananalane",
         "Jane Treehugger",
@@ -41,7 +41,7 @@ public class GameInfo{
         "Orangey Peel (mechanic)"
     };
 
-    public string[] criminals = {
+    public static string[] criminals = {
         "\"Sly\" Silas Shadowtail",
         "\"Ruckus\" Rico Rumble",
         "\"Mischief\" Maya Macaque",
@@ -54,7 +54,7 @@ public class GameInfo{
         "Sticky Fingered Mango"
     };
 
-    public string[] governmentLeaders = {
+    public static string[] governmentLeaders = {
         "Mayor Monkeyshine",
         "President Primate",
         "Prime Minister Palmson",
@@ -67,7 +67,7 @@ public class GameInfo{
         "Minister Macaque Merit"
     };
 
-    public string[] musicians = {
+    public static string[] musicians = {
         "Swingy Keys McMonkey",
         "Banjo Bananas",
         "Howler Highnotes",
@@ -80,7 +80,7 @@ public class GameInfo{
         "\"Tree Top\" Tess (violinist)"
     };
 
-    public string[] accountants = {
+    public static string[] accountants = {
         "Chip Calculator (very precise)",
         "Penny Ledgerleaf",
         "Digits Darwin",
@@ -93,7 +93,7 @@ public class GameInfo{
         "Harriet Taxbanana"
     };
 
-    public string[] sportsStars = {
+    public static string[] sportsStars = {
         "\"The Flying\" Fuzzball Franklin (basketball)",
         "\"Swing King\" Sammy Simian (baseball)",
         "\"Ape Ace\" Axel Arbor (tennis)",
@@ -106,7 +106,7 @@ public class GameInfo{
         "Leapin’ Lemmy Slamdunk"
     };
 
-    public string[] fashionistas = {
+    public static string[] fashionistas = {
         "Haute Hannah Hairspray",
         "Chic Chimpanzee Chanel",
         "Trendy Tarzan Tailor",
@@ -119,7 +119,7 @@ public class GameInfo{
         "Stella Mangartney"
     };
 
-    public string[] actors = {
+    public static string[] actors = {
         "Marlon Banando",
         "Chimpanzo Washington",
         "Natalie Gorillman",
@@ -127,12 +127,24 @@ public class GameInfo{
         "Vine Diesel"
     };
 
-    public string[] eliteBusinessMonkeys = {
+    public static string[] eliteBusinessMonkeys = {
         "CEO Bananas",
         "Coco Corporation",
         "Patricia Peelson",
         "Vincent Vinevestor",
         "Harold Hightree"
+    };
+    public static string[] scienceMonkeys = {
+        "Dr. Bananas",
+        "Professor Chimps",
+        "Dr. Jane Goodape",
+        "Major Monk",
+        "Dr. C. Mandrill",
+        "Captain Kong",
+        "Dr. Oook",
+        "Professor P. Panzee",
+        "Dr. Simi Ons",
+        "General Gibbon"
     };
 
 }

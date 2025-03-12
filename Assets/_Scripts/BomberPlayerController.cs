@@ -9,8 +9,10 @@ public class BomberPlayerController : MonoBehaviour
     [Range(0.01f, 1.2f)]
     public float speed = 1.2f;
     
-    [Range(1f, 150f)]
-    public float jumpForce = 10f;
+    [Range(.1f, .9f)]
+    public float jumpForce = .1f;
+    [Range(2f, 50f)]
+    public float kickForce = 10f;
     float dashForce = 8f;
 
     private Vector2 moveInput;
@@ -26,7 +28,8 @@ public class BomberPlayerController : MonoBehaviour
 
 
     float controllerRotationSmoothing = 1000f;
-    bool isGrounded, canMove;
+    public bool isGrounded{get; private set;}
+    public bool canMove{get; private set;}
 
     float groundCheckDistance;
     [Range(2f, 5f)]
@@ -61,10 +64,11 @@ public class BomberPlayerController : MonoBehaviour
         inventory = GetComponent<BombInventoryController>();
         controller = GetComponent<CharacterController>();
         onBomberSpawn?.Invoke(transform);
-        controls.Player.Use.performed += _ => ToggleAccessory();
+        controls.Player.Use.performed += _ => Hold();
+        controls.Player.Use.canceled += _ => Throw();
         controls.Player.Interact.performed += _ => Interact();
         controls.Player.Action.performed += _ => Plant();
-        controls.Player.Jump.performed += Jump;
+        controls.Player.Jump.performed += _ => Plant();
         controls.Player.Sprint.performed += _ => SprintStart();
         controls.Player.Sprint.canceled += _ => SprintStop();
         controls.Player.ItemForward.performed += _ => SwapBomb(1);
@@ -73,6 +77,15 @@ public class BomberPlayerController : MonoBehaviour
         controls.Player.ClassDown.performed += _ => SwapDetonator(-1);
         controls.Player.Detonate.performed += _ => Detonate();
     }
+
+    private void Hold(){
+        if (inventory != null) inventory.HoldBomb();
+    }
+    private void Throw()
+    {
+        if (inventory != null) inventory.PushBomb(transform, kickForce);
+    }
+
     void Update(){
         HandleInput();
         isGrounded = Grounded();
@@ -125,6 +138,7 @@ public class BomberPlayerController : MonoBehaviour
         {
             moveVelocity.y += Mathf.Sqrt(jumpForce* -3.0f * gravityValue);
         }
+        animatorFX.Jump();
     }
 
     void Dash(){

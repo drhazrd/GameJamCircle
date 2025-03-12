@@ -17,7 +17,7 @@ public class BombController : MonoBehaviour
     float force = 400f;
     float fuseTimer, maxFuseTime;
     bool player;
-    bool hasExploded;
+    public bool hasExploded{get; private set;}
     public GameObject radiusVFX;
     public GameObject explodedVFX;
     CinemachineImpulseSource impluse;
@@ -29,6 +29,8 @@ public class BombController : MonoBehaviour
     bool activated;
     private bool isProximity, isRemote, isLink;
     public AudioClip bombSFX;
+    private float explosionDelay;
+
     public static event Action<BombController> onBombDestroy;
 
     void OnEnable()
@@ -69,8 +71,8 @@ public class BombController : MonoBehaviour
         fuseTimer -= Time.deltaTime;
         if (fuseTimer <= 0f && !hasExploded)
         {
-            StartCoroutine(Explode());
             hasExploded = true;
+            StartCoroutine(Explode());
             return;
         }
     }
@@ -81,8 +83,8 @@ public class BombController : MonoBehaviour
             playerController.SetStackTarget(this);
         }
         if(other.tag == "CanBoom" && isProximity){
-            StartCoroutine(Explode());
             hasExploded = true;
+            StartCoroutine(Explode());
             return; 
         }
     }
@@ -98,35 +100,46 @@ public class BombController : MonoBehaviour
     }
     void Detonate(){
         if(isRemote){
-            StartCoroutine(Explode());
             hasExploded = true;
+            StartCoroutine(Explode());
             return;
         }
     }
+    public void LocalDetonate(){
+        hasExploded = true;
+        explosionDelay = 1f;
+        StartCoroutine(Explode());
+        return;
+    }
     public void LinkDetonate(){
         if(isLink){
-            StartCoroutine(Explode());
             hasExploded = true;
+            StartCoroutine(Explode());
             return;
         }
     }
     IEnumerator Explode()
     {
-        yield return new WaitForSeconds(.05f);
+        yield return new WaitForSeconds(explosionDelay);
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
         foreach (Collider nearbyObject in colliders)
         {
+            player = nearbyObject.transform.gameObject.tag == "Player";
+            if(player){
+                Transform foundPlayer = nearbyObject.transform;
+                Debug.Log("Player Explode Up");
+                foundPlayer.gameObject.GetComponent<BomberPlayerController>().BombJump(damage);
+            }
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
            //Damage
             if (rb != null)
             {
-                player = rb.gameObject.tag == "Player";
+                if(rb.TryGetComponent<BombController>(out BombController nearbyBomb))
+                {
+                    if(!nearbyBomb.hasExploded)nearbyBomb.LocalDetonate();
+                }
                 if(rb.gameObject.TryGetComponent<Damageable>(out Damageable health)){
                     health.TakeDamage(damage);
-                }
-                if(player){
-                    Debug.Log("Player Explode Up");
-                    rb.gameObject.GetComponent<BomberPlayerController>().BombJump(damage);
                 }
                 rb.AddExplosionForce(force, transform.position, radius);
             }
@@ -134,7 +147,7 @@ public class BombController : MonoBehaviour
         //Audio Clip
         if(explodedVFX != null) Instantiate(explodedVFX, transform.position, transform.rotation);
         float newForce = force / 1000;
-        impluse.GenerateImpulse(newForce);
+        if(impluse != null)impluse.GenerateImpulse(newForce);
         yield return new WaitForSeconds(.01f);
         if(bombSFX != null) AudioManager.instance.PlaySFXClip(bombSFX);
         onBombDestroy?.Invoke(this);

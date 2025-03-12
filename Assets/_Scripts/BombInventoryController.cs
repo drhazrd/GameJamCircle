@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class BombInventoryController : MonoBehaviour
@@ -21,6 +20,7 @@ public class BombInventoryController : MonoBehaviour
     List <BombController> listOfRemoteDetonation = new List<BombController>();
     List <BombController> listOfLinkDetonation = new List<BombController>();
     private float linkDetonateDelay = 1f;
+    private bool holdingBomb;
 
     void OnEnable()
     {
@@ -116,6 +116,7 @@ public class BombInventoryController : MonoBehaviour
     {
         detonatorReady = listOfRemoteDetonation.Count > 0 ? true : false; 
         BombCopUIManager.ui.UpdateUIData(bombClassID, bombDetonatorID, bombTypeID, bombStock, detonatorReady);
+        LeashBomb();
     }
     void ClearList(){
         listOfRemoteDetonation.Clear();
@@ -136,8 +137,34 @@ public class BombInventoryController : MonoBehaviour
     }
 
     public void ClearStack(BombController bomb){
-        Debug.Log("Clear Stack!");
         if(stackTarget == bomb) SetStackTarget(null);
+    }
+
+    public void PushBomb(Transform t, float forceAmount)
+    {
+        if(stackOppurtunity){
+            if(stackTarget.transform.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb)){
+                forceAmount *= 10f;
+                Vector3 pushDirection = new Vector3 (0,forceAmount, forceAmount);
+                rb.AddForce(setpoint.forward * forceAmount, ForceMode.Impulse);
+            }
+            if(holdingBomb) holdingBomb = false;
+        }
+        Debug.Log("Push!");
+    }
+    public void HoldBomb(){
+        if(stackOppurtunity){
+            if(stackTarget.transform.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb)){
+                holdingBomb = true;
+            }
+        }
+    }
+    public void LeashBomb()
+    {
+        if(holdingBomb){
+            stackTarget.transform.position = setpoint.position;
+            Debug.Log("Hold!");
+        }
     }
 }
 

@@ -56,7 +56,16 @@
                     "id": "1c2f6ac4-8d04-4f35-a56f-4a7810630364",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseHold",
+                    "type": "Button",
+                    "id": "c7599ece-2c60-42c6-9061-d39310da2bc4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
@@ -451,6 +460,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ItemPrevious",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06f4ca68-eb7c-467c-8bd4-d1c779a3701a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "UseHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50d98750-0081-4830-8b78-5a7f3899982e",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "UseHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

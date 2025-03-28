@@ -37,7 +37,7 @@ public class Damageable : MonoBehaviour
     public virtual void Die(){
         if(anim != null){
             anim.Death();
-            deathDelay = anim.m_animator.playbackTime + 5f;
+            deathDelay = anim.m_animator.playbackTime + .15f;
         }
         if(deathSFX != null) AudioManager.instance.PlaySFXClip(deathSFX);
         if(deathVFX != null) Instantiate(deathVFX, transform.position, transform.rotation);

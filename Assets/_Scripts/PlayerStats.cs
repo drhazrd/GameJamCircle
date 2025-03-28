@@ -6,7 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
         
     public static PlayerStats stats;
-    public static event Action onLevelUp;
+    public static event LevelUp onLevelUp;
+    public delegate void LevelUp();
     
     public int currentLevel = 1;
     public int currentExp = 0;
@@ -38,7 +39,7 @@ public class PlayerStats : MonoBehaviour
         previousExp = GetNeedExp(currentLevel - 1);
 
         if(currentExp >= nextLevelExp){
-            LevelUp();
+            LevelIncrease();
             onLevelUp?.Invoke();
             nextLevelExp = GetNeedExp(currentLevel);
             previousExp = GetNeedExp(currentLevel - 1);
@@ -46,7 +47,7 @@ public class PlayerStats : MonoBehaviour
     }
 
 
-    public void LevelUp()
+    public void LevelIncrease()
     {
         if (currentLevel >= 60) currentLevel = 60; else currentLevel++;
         Debug.Log($"Player Level {currentLevel}");

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Tetrominoes : MonoBehaviour
 {
-    public static event Action onDeleteLine;
+    public static event LineDelete onDeleteLine;
+    public delegate void LineDelete();
     public Vector3 rotationpoint;
     private float previousTime;
     public float fallTime = 0.8f;

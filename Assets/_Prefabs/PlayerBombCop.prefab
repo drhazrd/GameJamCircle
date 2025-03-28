@@ -433,11 +433,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8dc2b53d52ddac4096213caccba5fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1.2
+  jumpForce: 0.1
+  kickForce: 10
   accessory: {fileID: 5569476044257706756}
-  _groundChecker: {fileID: 5743085097591071942}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  gravityValue: -9.81
+  sprintMultiplier: 2
 --- !u!114 &1416589950756784299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +454,7 @@ MonoBehaviour:
   setpoint: {fileID: 2114783418440179018}
   bombTypes:
   - {fileID: 7317948045678449975, guid: b5ae2522cd3c1604486f64ab458f44c1, type: 3}
+  stackOppurtunity: 0
 --- !u!114 &5453603085403627134
 MonoBehaviour:
   m_ObjectHideFlags: 0

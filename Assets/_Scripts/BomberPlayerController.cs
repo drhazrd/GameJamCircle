@@ -39,7 +39,8 @@ public class BomberPlayerController : MonoBehaviour
 
     public bool isGamePad{get; private set;}
 
-    public static event Action onDetonateAllBombs;
+    public static event DetonateAllBombs onDetonateAllBombs;
+    public delegate void DetonateAllBombs();
 
     public bool isMoving{get; private set;}
     public bool isSprinting{get; private set;}

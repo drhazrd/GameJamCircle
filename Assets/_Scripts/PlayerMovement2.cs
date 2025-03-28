@@ -28,7 +28,8 @@ public class PlayerMovement2 : MonoBehaviour
     
     bool isGamepad;
 
-    public static event Action onDetonateAllBombs;
+    public static event BomberDentonation onDetonateAllBombs;
+    public delegate void BomberDentonation();
 
     public bool isMoving{get; private set;}
     public bool isSprinting{get; private set;}

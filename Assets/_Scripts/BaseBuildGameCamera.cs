@@ -37,7 +37,12 @@ public class BaseBuildGameCamera : MonoBehaviour
     public TextMeshProUGUI resourceText;
     public TextMeshProUGUI buildText;
 
-    public event Action OnClicked, OnExit;
+    public static event ClickAction OnClicked;
+    public delegate void ClickAction();
+    public static event ActionExit OnExit;
+    public delegate void ActionExit();
+
+    
     [Header("Gameplay Debug")]
 
     bool isPaused;

@@ -13,13 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving;
     private bool isSprinting;
     private float playerSpeed = 2.0f;
-    private float walkSpeed = 2.0f;
+    public float walkSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
     private float groundedGravity = -0.1f;
     Vector2 moveInput;
     PlayerControls playerControls;
-
     void Awake()
     {
         playerControls = new PlayerControls();
@@ -38,12 +37,9 @@ public class PlayerMovement : MonoBehaviour
     void OnDisable(){
         playerControls.Disable();
     }
-
-
     void FixedUpdate(){
         Movement();
     }
-
     void Update()
     {
         isGrounded = Grounded();
@@ -75,8 +71,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     void AnimationHandling(){
-        _anim.SetBool("Sprint", isSprinting);
-        _anim.SetBool("isRunning", isMoving);
+        if(_anim != null){
+            _anim.SetBool("Sprint", isSprinting);
+            _anim.SetBool("isRunning", isMoving);
+        }
     }
     void Sprint(){
         Debug.Log("sprint");
@@ -92,9 +90,7 @@ public class PlayerMovement : MonoBehaviour
     bool Grounded(){
         float groundCheckDistance;
         float bufferCheckDistance = 0.1f;
-
         groundCheckDistance = (controller.height / 2) + bufferCheckDistance;
-
         RaycastHit hit;
         if(Physics.Raycast (transform.position, - transform.up, out hit, groundCheckDistance)){
             return true;

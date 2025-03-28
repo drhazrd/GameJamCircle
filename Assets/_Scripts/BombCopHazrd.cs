@@ -11,6 +11,7 @@ public class BombCopHazrd:MonoBehaviour
     public bool oneShot;
     bool canDamage;
     CinemachineImpulseSource impluse;
+    public AttackType type;
     float newForce = .2f;
 
     void Start()

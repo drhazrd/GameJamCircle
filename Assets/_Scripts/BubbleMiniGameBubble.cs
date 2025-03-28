@@ -6,7 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class BubbleMiniGameBubble : MonoBehaviour
 {
-    public static event Action onBubblePop;
+    public static event PopEvent onBubblePop;
+    public delegate void PopEvent();
     Rigidbody2D my_rigidbody;
     CircleCollider2D my_collider;
     public GameObject popVFX;

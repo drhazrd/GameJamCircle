@@ -83,8 +83,11 @@ public class BombCopGameManager : MonoBehaviour
         UpdateGameState(GameState.Play);
         gameTime = 60f;
         ToggleTimer();
-        BombCopUIManager.ui.ShowTimer();
-        BombCopUIManager.ui.FadeIn();
+
+        if(BombCopUIManager.ui != null){
+            BombCopUIManager.ui.ShowTimer();
+            BombCopUIManager.ui.FadeIn();
+        }
 
     }
     public void ToggleTimer(){

@@ -115,7 +115,7 @@ public class BombInventoryController : MonoBehaviour
     void Update()
     {
         detonatorReady = listOfRemoteDetonation.Count > 0 ? true : false; 
-        BombCopUIManager.ui.UpdateUIData(bombClassID, bombDetonatorID, bombTypeID, bombStock, detonatorReady);
+        if(BombCopUIManager.ui != null) BombCopUIManager.ui.UpdateUIData(bombClassID, bombDetonatorID, bombTypeID, bombStock, detonatorReady);
         LeashBomb();
     }
     void ClearList(){

@@ -3,36 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement2 : MonoBehaviour
 {
-    public float playerSpeed = 2.0f;
-    public float jumpHeight = 1.0f;
-    float dashForce = 8f;
-
-    private Vector2 m_input;
-    private Vector3 move;
-    BombInventoryController inventory;
-    private CharacterController controller;
+    [Range(0.01f, 12f)]
+    public float speed = 6f;
+    public float jumpPower = 6f;
     TestControls controls;
-    AnimationFX animatorJuice;
-
-    public float gravityValue = -9.81f;
-
+    private Vector2 moveInput;
+    private CharacterController controller;
+    public bool isGrounded{get; private set;}
+    private Vector3 playerDirection;
+    float velocity;
+    private bool canMove = true;
     private float controllerRotationSmoothing = 1000f;
-    private bool groundedPlayer, canMove;
+    private float gravityValue = -98.1f;
+    public float gravityMultiplier = 10f;
 
-    float groundCheckDistance;
-    [Range(2f, 5f)]
-    public float sprintMultiplier;
-    private Vector3 playerVelocity;
-    
-    bool isGamepad;
-
-    public static event BomberDentonation onDetonateAllBombs;
-    public delegate void BomberDentonation();
-
-    public bool isMoving{get; private set;}
-    public bool isSprinting{get; private set;}
 
     void Awake(){
         controls = new TestControls();
@@ -45,92 +34,64 @@ public class PlayerMovement2 : MonoBehaviour
     void OnDisable(){
         controls.Disable();
     }
-
-    void Start(){
+    
+    void Start()
+    {
         controller = GetComponent<CharacterController>();
-        controls.Player.Jump.performed += OnJump; // Subscribe to the Jump action event
-        animatorJuice = GetComponentInChildren<AnimationFX>();
-        inventory = GetComponent<BombInventoryController>();
-        controls.Player.Interact.performed += _ => Interact();
-        controls.Player.Action.performed += _ => DoAction();
-        controls.Player.Sprint.performed += _ => SprintStart();
-        controls.Player.Sprint.canceled += _ => SprintStop();
+        controls.Player.Jump.performed += _ => Jump();
+
+    }
+
+    private void Jump()
+    {
+        if(!isGrounded) return;
+        velocity += jumpPower;
     }
 
     void Update(){
-        groundedPlayer = Grounded();
-        canMove = GameManager.Instance.canMove;
-        if(canMove){
-            HandleInput();
-            isMoving = m_input != Vector2.zero;
-        }
+        HandleInput();
+        isGrounded = Grounded();
     }
 
-
-    void FixedUpdate(){
-        if(canMove){
-            Mover();
-        }
-    }
-    private void DoAction()
+    private bool Grounded()
     {
-        //Action
+        float radius = 0.2f; // Adjust radius to your player's size
+        Vector3 groundCheckPosition = transform.position + Vector3.down * (controller.height / 2);
+        return Physics.CheckSphere(groundCheckPosition, radius, LayerMask.GetMask("Ground"));
     }
 
     private void HandleInput()
     {
-        m_input = controls.Player.Move.ReadValue<Vector2>();
+        moveInput = controls.Player.Move.ReadValue<Vector2>();
     }
 
-    private void Mover(){
-        move = new Vector3(m_input.x, 0f, m_input.y);
-        controller.Move(move * Time.deltaTime * playerSpeed);
-        if (move != Vector3.zero){
-            gameObject.transform.forward = move;
+    void FixedUpdate()
+    {
+        if(canMove){
+            Movement();
+            Gravity();
+        } 
+    }
+
+    private void Gravity()
+    {
+        if(isGrounded){
+            if(velocity < 0) 
+                velocity = -.5f;
+        }else {
+            velocity += gravityValue * gravityMultiplier * Time.deltaTime;
         }
-        if(move.sqrMagnitude > 0.0f){
-            Quaternion newrotation = Quaternion.LookRotation(move,Vector3.up);
+        playerDirection.y = velocity;
+    }
+
+    private void Movement()
+    {
+
+        playerDirection = new Vector3 (moveInput.x * speed, 0f, moveInput.y * speed);
+        if(playerDirection.sqrMagnitude > 0.01f){
+            Quaternion newrotation = Quaternion.LookRotation(new Vector3(playerDirection.x, 0f, playerDirection.z),Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newrotation, controllerRotationSmoothing * Time.deltaTime);
         }
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
-        if (groundedPlayer && playerVelocity.y < 0){
-            playerVelocity.y = 0f;
-        }
+        controller.Move(playerDirection * Time.deltaTime);
     }
-
-    bool Grounded(){
-        float bufferCheckDistance = 0.1f;
-        groundCheckDistance = (controller.height / 2) + bufferCheckDistance;
-        RaycastHit hit;
-        if(Physics.Raycast (transform.position, - transform.up, out hit, groundCheckDistance)){
-            return true;
-        } else 
-        return false;
-    }
-
-    void OnJump(InputAction.CallbackContext context){
-        if (groundedPlayer && canMove)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
-    }
-
-    void Dash(){
-        if(canMove){
-        }
-    }
-
-    void SprintStart(){
-        isSprinting = true;
-        playerSpeed *= sprintMultiplier;      
-    }
-
-    void SprintStop(){
-        isSprinting = false;
-        playerSpeed /= sprintMultiplier;
-    }
-
-    void Interact(){}
-
 }

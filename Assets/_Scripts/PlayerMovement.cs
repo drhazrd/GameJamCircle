@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isSprinting;
     private float playerSpeed = 2.0f;
     public float walkSpeed = 2.0f;
-    private float jumpHeight = 1.0f;
+    private float jumpHeight = 10f;
     private float gravityValue = -9.81f;
     private float groundedGravity = -0.1f;
     Vector2 moveInput;

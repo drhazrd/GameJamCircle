@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerInput))]
 public class BomberPlayerController : MonoBehaviour
 {
     [Range(0.01f, 1.2f)]
@@ -91,7 +93,7 @@ public class BomberPlayerController : MonoBehaviour
         HandleInput();
         isGrounded = Grounded();
         canMove = BombCopGameManager.Instance.canMove;
-        animatorFX.alternate = canMove;
+        if(animatorFX != null) animatorFX.alternate = canMove;
         if(canMove){
             isMoving = moveInput != Vector2.zero;
         }
@@ -105,17 +107,17 @@ public class BomberPlayerController : MonoBehaviour
         moveInput = controls.Player.Move.ReadValue<Vector2>();
     }
     void Movement(){
-        playerDirection = new Vector3 (moveInput.x, 0f, moveInput.y);
-        controller.Move(playerDirection * Time.deltaTime * speed);
+        if(isGrounded && moveVelocity.y < 0){
+            moveVelocity.y = 0f;
+        }else moveVelocity.y += gravityValue * Time.deltaTime;
+        playerDirection = new Vector3 (moveInput.x, 0, moveInput.y);
         if(playerDirection.sqrMagnitude > 0.0f){
             Quaternion newrotation = Quaternion.LookRotation(playerDirection,Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newrotation, controllerRotationSmoothing * Time.deltaTime);
         }
-        moveVelocity.y += gravityValue * Time.deltaTime;
+        
+        controller.Move(playerDirection * Time.deltaTime * speed);
         controller.Move(moveVelocity * Time.deltaTime);
-        if(isGrounded && moveVelocity.y < 0){
-            moveVelocity.y = 0f;
-        }
     }
 
     bool Grounded(){
@@ -139,7 +141,7 @@ public class BomberPlayerController : MonoBehaviour
         {
             moveVelocity.y += Mathf.Sqrt(jumpForce* -3.0f * gravityValue);
         }
-        animatorFX.Jump();
+        if(animatorFX != null) animatorFX.Jump();
     }
 
     void Dash(){
@@ -157,7 +159,7 @@ public class BomberPlayerController : MonoBehaviour
     
     void Interact(){
         if(canMove){
-            animatorFX.Interact(); 
+            if(animatorFX != null) animatorFX.Interact(); 
         }
     }
 
@@ -170,8 +172,8 @@ public class BomberPlayerController : MonoBehaviour
 
     void Plant(){
         if(inventory != null && canMove){
-            inventory.SetBomb();
-            animatorFX.Action(); 
+            if(inventory != null) inventory.SetBomb();
+            if(animatorFX != null) animatorFX.Action(); 
         }
     }
     

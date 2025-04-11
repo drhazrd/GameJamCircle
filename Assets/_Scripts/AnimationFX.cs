@@ -64,4 +64,9 @@ public class AnimationFX : MonoBehaviour
     {
         m_animator.SetTrigger("Death");
     }
+
+    public void Use()
+    {
+        m_animator.SetTrigger("Use");
+    }
 }

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     Transform player;
     public static event Action<GameState> OnGameStateChanged;
     bool paused;
-    public bool canMove;
+    public bool canMove{get; private set;}
 
     public float gameTime{get; private set;}
 
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
        {
         case GameState.Play:
             //Cursor.visible = false;
+            canMove = true;
             break;  
         case GameState.Pause:
             Cursor.visible = true;

@@ -1,7 +1,7 @@
 using UnityEngine;
 [CreateAssetMenu(menuName ="AI/Actions/Attack")]
 
-public class AttackAction : Action
+public class AttackAction : ActionBase
 {
     public override void Act(BombCopNPCController controller)
     {

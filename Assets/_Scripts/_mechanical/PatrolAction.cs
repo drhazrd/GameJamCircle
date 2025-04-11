@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="AI/Actions/Patrol")]
-public class PatrolAction : Action{
+public class PatrolAction : ActionBase 
+{
     public override void Act(BombCopNPCController controller){
         Patrol(controller);
     }

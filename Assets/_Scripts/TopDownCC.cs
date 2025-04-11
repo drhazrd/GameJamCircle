@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class TopDownCC : MonoBehaviour
 {
-    Rigidbody rigidBody;
+    CharacterController cc;
+    TestControls controls;
+    PlayerInput pi;
+
     Vector2 movement;
     Vector3 lookPosition;
-    Transform cam;
+    Camera cam;
     Vector3 camForward;
     Vector3 move;
     Vector3 moveInput;
@@ -16,52 +21,82 @@ public class TopDownCC : MonoBehaviour
     float turnAmount;
     public float speed = 4f;
     Animator m_animator;
+    public GameObject mouseAim;
+    public Transform model;
+    private bool isGrounded;
+    private float velocity;
+    private float gravityValue = 6-180;
+    private bool isAiming;
+    private bool isMoving;
+    private float rotationSmoothing = 100f;
+    private bool isGamePad;
+    private Vector2 aimInput;
+    private bool canMove;
+    private bool fireGun;
+
+    private void Awake()
+    {
+        controls = new TestControls();
+        pi = GetComponent<PlayerInput>();
+    }
+
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        cam = Camera.main.transform;
-        SetupAnimator();
+        cc = GetComponent<CharacterController>();
+        cam = Camera.main;
+        model = cc.transform.GetChild(0).transform;
     }
     void Update(){
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, 100)){
-            lookPosition = hit.point;
-        }
-        Vector3 lookDirection = lookPosition - transform.position;
-        lookDirection.y = 0;
-        transform.LookAt(transform.position + lookDirection, Vector3.up);
+        HandleInput();
+        isGrounded = Grounded();
+        BoolChecker();
+        if(isAiming) Aim(); else NoAim();
+
+        
     }
 
+    private (bool success, Vector3 position) GetMousePosition(){
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground"))){
+            return (success: true, position: hitInfo.point);
+        } else{
+            return (success: false, position: Vector3.zero);
+        }
+    }
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        Movement();
+        Gravity();
+    }
 
-        if(cam != null){
-            camForward = Vector3.Scale(cam.up, new Vector3(1, 0, 1)).normalized;
-            move = vertical * camForward + horizontal * cam.right;
-        } else {
-            move = vertical * Vector3.forward + horizontal * Vector3.right;
+    private void Gravity()
+    {
+        if(isGrounded){
+            if(velocity < 0) {
+                velocity = -.5f;
+            }
+        }else {
+            velocity += gravityValue * Time.deltaTime;
         }
-        if(move.magnitude > 1){
-            move.Normalize();
-        }
-        Move(move);
+    }
 
-        Vector3 moveDirection = new Vector3(horizontal, 0, vertical);
-
-        rigidBody.AddForce(moveDirection.normalized * speed / Time.deltaTime);
-
+    void Movement(){
+        Vector3 moveVector = new Vector3(moveInput.x * speed, 0, moveInput.y * speed).normalized;
+        move.y = velocity;
+        move = moveVector * Time.deltaTime;
+        cc.Move(move);
 
     }
-    void Move(Vector3 move){
-        if(move.magnitude > 1){
-            move.Normalize();
-        }
-        this.moveInput = move;
-        ConvertMoveInput();
-        UpdateAnimator();
+    private void HandleInput()
+    {
+        moveInput = controls.Player.Move.ReadValue<Vector2>();
+        aimInput = controls.Player.Look.ReadValue<Vector2>();
+    }
+     private bool Grounded()
+    {
+        float radius = 0.2f; // Adjust radius to your player's size
+        Vector3 groundCheckPosition = transform.position + Vector3.down * (cc.height / 2);
+        return Physics.CheckSphere(groundCheckPosition, radius, LayerMask.GetMask("Ground"));
     }
     void ConvertMoveInput(){
         Vector3 localMove = transform.InverseTransformDirection(moveInput);
@@ -73,7 +108,7 @@ public class TopDownCC : MonoBehaviour
         m_animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
     }
     void SetupAnimator(){
-        m_animator = GetComponent<Animator>();
+        m_animator = GetComponentInChildren<Animator>();
 
         foreach (var childAnimator in GetComponentsInChildren<Animator>()){
             if (childAnimator != m_animator){
@@ -81,5 +116,55 @@ public class TopDownCC : MonoBehaviour
                 Destroy(childAnimator);
             }            
         }
+    }
+    void BoolChecker()
+    {
+        isAiming = aimInput.sqrMagnitude > 0 && canMove;
+        isMoving = moveInput.sqrMagnitude > 0.0f && canMove;
+    }
+    private void NoAim()
+    {
+        Vector3 inputDirection = new Vector3( moveInput.x, 0, moveInput.y);
+        mouseAim.SetActive(false);
+        if(moveInput.sqrMagnitude > 0.01f){
+
+            Vector3 lookDirection = inputDirection.normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+            model.transform.rotation = Quaternion.Slerp(model.transform.rotation, targetRotation, Time.deltaTime * rotationSmoothing);
+        }
+    }
+
+    private void Aim()
+    {
+        mouseAim.SetActive(true);
+        var (success, position) = GetMousePosition();
+        if (success)
+        {
+            var direction = position - transform.position;
+            direction.y = 0;
+            model.transform.forward = direction;
+            if(mouseAim != null){
+                mouseAim.transform.position = position;
+            }
+        }
+    }
+    public void OnDeviceChange(PlayerInput pi)
+    {
+        isGamePad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
+        Cursor.visible = !isGamePad;
+        if(isGamePad){
+            Cursor.lockState = CursorLockMode.Locked;
+        } else {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+    }
+    void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable()
+    {
+        controls.Disable();
     }
 }

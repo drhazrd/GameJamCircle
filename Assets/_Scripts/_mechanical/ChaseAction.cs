@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="AI/Actions/Chase")]
-public class ChaseAction : Action
+public class ChaseAction : ActionBase
 {
     // Start is called before the first frame update
     public override void Act(BombCopNPCController controller)

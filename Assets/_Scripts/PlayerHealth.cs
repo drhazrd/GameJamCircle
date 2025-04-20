@@ -18,8 +18,7 @@ public class PlayerHealth : MonoBehaviour
          
         if(health <= 0)
         {
-            GameManager.Instance.UpdateGameState(GameState.Lose);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             onPlayerDeath.Invoke();
         }
         health = Mathf.Clamp(health, 0, maxHealth);

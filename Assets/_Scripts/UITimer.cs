@@ -13,7 +13,7 @@ public class UITimer : MonoBehaviour
         timer = 0f;
     }
     void Update(){
-        if(GameManager.Instance.state == GameState.Play && timerRun)
+        if(GameManager.gameManager.state == GameState.Play && timerRun)
             {
                 timer += Time.deltaTime;
                 display.text = "TIME: " + timer.ToString("F2");

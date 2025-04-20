@@ -6,6 +6,6 @@ public class GameGoal : MonoBehaviour
 {
     void OnTriggerEnter()
     {
-        GameManager.Instance.Win();
+        GameManager.gameManager.Win();
     }
 }

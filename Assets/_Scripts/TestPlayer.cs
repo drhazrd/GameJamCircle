@@ -24,13 +24,12 @@ public class TestPlayer : MonoBehaviour
     private Vector3 playerDirection;
     float velocity;
     public bool canMove {get; private set;}
-    private float controllerRotationSmoothing = 1000f;
+    private float rotationSmoothing = 1000f;
     private float gravityValue = -180f;
     public float gravityMultiplier = 1f;
     AnimationFX animatorFX;
     Transform _model;
     private GameObject mouseAim;
-    private float rotationSmoothing = 1000f;
 
     void Awake(){
         controls = new TestControls();
@@ -107,7 +106,7 @@ public class TestPlayer : MonoBehaviour
             if(velocity < 0) 
                 velocity = -.5f;
         }else {
-            velocity += gravityValue * Time.deltaTime;
+            velocity += gravityValue * gravityMultiplier * Time.deltaTime;
         }
     }
 
@@ -184,11 +183,11 @@ public class TestPlayer : MonoBehaviour
             return (success: false, position: Vector3.zero);
         }
     }
-        void BoolChecker()
+    void BoolChecker()
     {
         isGrounded = Grounded();
         if(animatorFX != null) animatorFX.isGrounded = isGrounded;
-        canMove = GameManager.Instance.canMove;
+        canMove = GameManager.gameManager.canMove;
         isAiming = aimInput.sqrMagnitude > 0 && canMove;
         isMoving = moveInput.sqrMagnitude > 0.0f && canMove;
     }

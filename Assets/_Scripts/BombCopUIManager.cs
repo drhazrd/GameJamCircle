@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class BombCopUIManager : MonoBehaviour
+public class BombCopUIManager : UIManager
 {
     public static BombCopUIManager ui;
-    public GameObject pauseMenuObject, interactObject, detonateObject, hudObject, timerObject, eventObject, statsObject;
+    public GameObject detonateObject;
     public TextMeshProUGUI gameDataUI, timerText;
     Image playerstat;
     int bombType, detonatorType;
@@ -42,7 +42,7 @@ public class BombCopUIManager : MonoBehaviour
     }
     void Update()
     {
-        paused = BombCopGameManager.Instance.paused;
+        paused = BombCopGameManager.gameManager.paused;
         pauseMenuObject.SetActive(paused);
         timerActive = BombCopGameManager.Instance.state == GameState.Play;
         if(timerActive){
@@ -57,7 +57,7 @@ public class BombCopUIManager : MonoBehaviour
     }
 
     public void Pause(){
-        BombCopGameManager.Instance.PauseGame();
+        BombCopGameManager.Instance.Pause();
     }
     public void Quit(){
         BombCopGameManager.Instance.QuitGame();
@@ -82,28 +82,7 @@ public class BombCopUIManager : MonoBehaviour
         }
     }
 
-    public void InteractButtonDisplay(ControlButton button, string interact2)
-    {
-        if(interactObject != null) interactObject.SetActive(true);
-    }
-    public void InteractButtonDisplay()
-    {
-        if(interactObject != null) interactObject.SetActive(true);
-    }
-
-    public void InteractButtonHide()
-    {
-        if(interactObject != null) interactObject.SetActive(false);
-    }
-    public void HUDDisplay()
-    {
-        if(hudObject != null) hudObject.SetActive(true);
-    }
-
-    public void HUDHide()
-    {
-        if(hudObject != null) hudObject.SetActive(false);
-    }
+    
     public void ShowTimer(){
         showTimer = !showTimer;
         if(timerObject != null) timerObject.SetActive(showTimer);

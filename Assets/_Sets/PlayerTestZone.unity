@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 779661}
   - component: {fileID: 779662}
   - component: {fileID: 779663}
+  - component: {fileID: 779665}
+  - component: {fileID: 779664}
   m_Layer: 0
   m_Name: Bari
   m_TagString: Player
@@ -323,6 +325,35 @@ MonoBehaviour:
   attackPower: 2000
   hitVFX: {fileID: 1735349400919506, guid: a17580581e360e74db460cc3d5dc0396, type: 3}
   range: 3
+--- !u!114 &779664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1387be4ee8f4fbb4e9058ea337312343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &779665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c765316b45cd7340a344a9fbac682f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missions:
+  - {fileID: 11400000, guid: 6c0837287f28d504d83dd888727bae6a, type: 2}
+  - {fileID: 11400000, guid: 10198cbc9e8f89b4c89ff98a9f9409bb, type: 2}
+  - {fileID: 11400000, guid: a8d9b4c88cf6db74eb3294521d3fcf30, type: 2}
+  - {fileID: 11400000, guid: 939aa03b8755d2949961e4824b45efba, type: 2}
 --- !u!1 &14805247
 GameObject:
   m_ObjectHideFlags: 0
@@ -26506,8 +26537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.41
-  mouseAim: {fileID: 1238684394}
-  model: {fileID: 1730022369}
+  jumpPower: 6
+  gravityMultiplier: 1
 --- !u!4 &1097901493
 Transform:
   m_ObjectHideFlags: 0
@@ -40642,6 +40673,7 @@ GameObject:
   - component: {fileID: 2030613942}
   - component: {fileID: 2030613941}
   - component: {fileID: 2030613947}
+  - component: {fileID: 2030613948}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -40662,8 +40694,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  mouseAim: {fileID: 974233632}
-  model: {fileID: 599216947}
+  jumpPower: 6
+  gravityMultiplier: 1
 --- !u!54 &2030613942
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40755,6 +40787,36 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2030613948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030613940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2033877147
 GameObject:
   m_ObjectHideFlags: 0

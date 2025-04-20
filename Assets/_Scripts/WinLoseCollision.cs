@@ -12,7 +12,7 @@ public class WinLoseCollision : MonoBehaviour
         {   
             Debug.Log("Complete");  
             AudioManager.instance.PlaySFXClip(soundEffect);
-            GameManager.Instance.UpdateGameState(GameState.Win);
+            GameManager.gameManager.UpdateGameState(GameState.Win);
         }        
     }
     

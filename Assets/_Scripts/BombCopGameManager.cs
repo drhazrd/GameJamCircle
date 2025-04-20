@@ -5,20 +5,14 @@ using Cinemachine;
 using UnityEditor;
 using UnityEngine;
 
-public class BombCopGameManager : MonoBehaviour
+public class BombCopGameManager : GameManager
 {
     public static BombCopGameManager Instance;
-    public static event GameStarted onGameStart;
-    public delegate void GameStarted();
-    [SerializeField]public GameState state;
+
     Transform player;
-    public static event Action<GameState> OnGameStateChanged;
-    public bool paused {get; private set;}
     TestControls controls;
     private bool activeTimer;
 
-    public bool canMove {get; private set;}
-    public float gameTime{get; private set;}
     public Transform spawnLocation;
 
     private MinimapCamera miniCam;
@@ -69,9 +63,7 @@ public class BombCopGameManager : MonoBehaviour
         gameCamera.LookAt = newTarget;
         gameCamera.Follow = newTarget;
     }
-    public void PlayerFreeze(){
-        canMove = !canMove;
-    }
+    
     void OnEnable(){
         controls.Enable();
     }
@@ -81,7 +73,7 @@ public class BombCopGameManager : MonoBehaviour
     private void StartGame()
     {
         UpdateGameState(GameState.Play);
-        gameTime = 60f;
+        base.SetGameTime(60f);
         ToggleTimer();
 
         if(BombCopUIManager.ui != null){
@@ -94,69 +86,12 @@ public class BombCopGameManager : MonoBehaviour
         activeTimer = !activeTimer;
         return;
     }
-    public void PauseGame(){
-        paused = !paused;
-        Time.timeScale = paused ? 0:1;
-        if(paused){
-            UpdateGameState(GameState.Pause);
-        } else if (!paused){
-            UpdateGameState(GameState.Play);
-        }
-        Debug.Log("TimeScale :" + Time.timeScale);
+    
+    public void Pause(){
+        PauseGame();
     }
     public void QuitGame(){
-        //Save then Quit
-        Application.Quit();
-        #if UNITY_EDITOR
-            EditorApplication.isPlaying = false; // Exits Play Mode
-        #endif
-    }
-
-    public void UpdateGameState(GameState newState) 
-    {
-       state = newState;
-
-       switch(newState)
-       {
-        case GameState.Play:
-            Cursor.visible = false;
-            canMove = true;
-            break;  
-        case GameState.Message:
-            Cursor.visible = true;
-            canMove = false;
-            break;  
-        case GameState.Pause:
-            Cursor.visible = true;
-            canMove = false;
-            break;  
-        case GameState.Lose:
-            Cursor.visible = true;
-            canMove = false;
-            ToggleTimer();
-            BombCopUIManager.ui.ShowTimer();
-            break;  
-        case GameState.Win:
-            Cursor.visible = true;
-            canMove = false;
-            break; 
-        default:
-            throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
-       }
-       OnGameStateChanged?.Invoke(newState);
-    }
-    void Update()
-    {
-        if(activeTimer){
-            gameTime -= Time.deltaTime;
-        } else {
-            gameTime = 0;
-            return; 
-        }
-        if(gameTime == 0){
-            UpdateGameState(GameState.Lose);
-            return;
-        }
+        Quit();
     }
     
 }

@@ -6,20 +6,21 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager gameManager;
     public static event GameStarted onGameStart;
     public delegate void GameStarted();
     [SerializeField]public GameState state;
     Transform player;
     public static event Action<GameState> OnGameStateChanged;
-    bool paused;
+    public bool paused {get; private set;}
     public bool canMove{get; private set;}
+    public bool isGamePad{get; private set;}
 
     public float gameTime{get; private set;}
 
     void Awake()
     {
-        Instance = this;
+        gameManager = this;
     }
     
     void Start()
@@ -134,6 +135,14 @@ public class GameManager : MonoBehaviour
         if(state == GameState.Play){
             gameTime += Time.deltaTime;
         }
+    }
+
+    public void PlayerFreeze()
+    {
+        //...
+    }
+    public void SetGameTime(float t){
+        gameTime = t;
     }
 }
  public enum GameState {

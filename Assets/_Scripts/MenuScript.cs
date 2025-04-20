@@ -22,7 +22,7 @@ public class MenuScript : MonoBehaviour
 
     public void Resume()
     {
-        GameManager.Instance.UpdateGameState(GameState.Play);
+        GameManager.gameManager.UpdateGameState(GameState.Play);
     }
 
     public void LoadNextLevel()
